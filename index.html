@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus | Creative Front-End Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --neon-blue: #00f7ff;
+            --electric-purple: #b300ff;
+            --cyber-yellow: #ffee00;
+            --dark-bg: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 247, 255, 0.1) 0%, rgba(11, 11, 11, 0.9) 60%);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+        
+        .purple-glow {
+            box-shadow: 0 0 15px var(--electric-purple);
+        }
+        
+        .yellow-glow {
+            box-shadow: 0 0 15px var(--cyber-yellow);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(179, 0, 255, 0.3);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #111111, #0a0a0a);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 247, 255, 0.1);
+        }
+        
+        .service-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: var(--neon-blue);
+            transform: scale(1.03);
+        }
+        
+        .input-field {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--neon-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Animated background elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute inset-0 grid-pattern"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-900 opacity-20 blur-3xl animate-pulse"></div>
+        <div class="absolute top-2/3 right-1/3 w-80 h-80 rounded-full bg-blue-900 opacity-20 blur-3xl animate-pulse delay-300"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b border-gray-900">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold">
+                    <span class="text-white">ZEUS</span>
+                    <span class="text-neon-blue">.</span>
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-neon-blue transition">Home</a>
+                    <a href="#about" class="nav-link text-white hover:text-neon-blue transition">About</a>
+                    <a href="#portfolio" class="nav-link text-white hover:text-neon-blue transition">Work</a>
+                    <a href="#services" class="nav-link text-white hover:text-neon-blue transition">Services</a>
+                    <a href="#contact" class="nav-link text-white hover:text-neon-blue transition">Contact</a>
+                </div>
+                
+                <button class="md:hidden text-white focus:outline-none">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden hero-bg">
+        <div class="container mx-auto px-6 py-20 md:py-0">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-16 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        <span class="text-white">Hi, I'm</span>
+                        <span class="text-neon-blue neon-text">Zeus</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-medium mb-8 text-gray-300">
+                        Creative Front-End Developer
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-lg">
+                        I turn bold ideas into pixel-perfect experiences. With a keen eye for design and obsession with performance, I create digital experiences that captivate and convert.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 purple-glow">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="px-8 py-3 border border-neon-blue text-neon-blue rounded-full font-medium hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300 transform hover:scale-105">
+                            Hire Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 blur-xl animate-pulse"></div>
+                        <div class="absolute inset-4 rounded-full border-2 border-neon-blue border-opacity-30 animate-spin-slow"></div>
+                        <div class="absolute inset-8 rounded-full border-2 border-neon-blue border-opacity-20 animate-spin-slow-reverse"></div>
+                        <div class="relative w-full h-full flex items-center justify-center">
+                            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-neon-blue animate-float">
+                               <!-- Profile image -->
+                                <img src="ptp.jpg" alt="Zeus Profile Picture" class="w-full h-full object-cover" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+                <a href="#about" class="animate-bounce">
+                    <i data-lucide="chevron-down" class="w-8 h-8 text-neon-blue"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">About</span>
+                    <span class="text-neon-blue"> Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute -inset-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 opacity-70 blur-lg"></div>
+                        <div class="relative w-full h-full rounded-lg overflow-hidden bg-gray-900 border border-gray-800">
+                            <!-- Placeholder for about image -->
+                            <img src="pep.jpg" alt="My Profile Picture" class="w-full h-full object-cover" />
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3">
+                    <h3 class="text-2xl font-bold mb-6 text-white">
+                        Creative Developer with a Passion for Perfection
+                    </h3>
+                    <p class="text-gray-400 mb-6">
+                        I'm Peter Kokonya, also known as Zeus, a front-end developer with over 3 years of experience crafting beautiful, functional, and high-performance websites and applications. My journey in web development began with a fascination for how code transforms into visual experiences.
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        What sets me apart is my artistic background combined with technical expertise. I approach each project with an eye for design and a mind for clean, efficient code. I'm obsessed with creating pixel-perfect interfaces that not only look stunning but also deliver seamless user experiences.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold mb-4 text-white">My Skills</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                     <!-- Python -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-green-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/python.svg" alt="Python" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Python</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Laravel -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-red-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/laravel.svg" alt="Laravel" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Laravel</span>
+                                </div>
+                            </div>
+                            
+                            <!-- MySQL -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/mysql.svg" alt="MySQL" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">MySQL</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Photoshop -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/adobeps.svg" alt="Photoshop" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Adobe Photoshop</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Canva -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-cyan-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/html5.svg" alt="Canva" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">html5/css3</span>
+                                </div>
+                            </div>
+                            
+                            <!-- React -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-sky-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/react.svg" alt="React" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">React</span>
+                                </div>
+                            </div>
+        
+                                    <!-- Git & GitHub -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-orange-900 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/github.svg" alt="GitHub" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Git & GitHub</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Workspace -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center overflow-hidden">
+                                    <img src="assets/google-workspace.svg" alt="Google Workspace" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Google Workspace</span>
+                                </div>
+                        </div>
+            
+                    </div>
+                    
+                    <a href="#" class="inline-flex items-center px-6 py-3 border border-neon-blue text-neon-blue rounded-full font-medium hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300">
+                        Download Resume
+                        <i data-lucide="download" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">My</span>
+                    <span class="text-neon-blue"> Work</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    Here are some of my recent projects. Each one was carefully crafted to deliver exceptional user experiences.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <!-- Project 1 -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="assets/deli.png" alt="Zeupreme Deli Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Zeupreme Deli</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Restaurant Website</h3>
+                    <p class="text-gray-400 mb-4">A modern, responsive website for a premium deli restaurant with online ordering system.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+
+                
+                <!-- Project 2 -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="assets/todo.png" alt="To-Do List App Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Task Manager</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">To-Do List Web App</h3>
+                    <p class="text-gray-400 mb-4">A sleek and responsive to-do list app with local storage support, allowing users to track, edit, and complete tasks with ease.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div
+
+                                <!-- Project 3 -->
+                                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-pink-900 opacity-70"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <i data-lucide="users" class="w-16 h-16 text-white"></i>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                            <h4 class="text-white font-semibold">EduManage</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2 text-white">Student Management System</h3>
+                                    <p class="text-gray-400 mb-4">A comprehensive system for educational institutions to manage students, courses, and grades.</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
+                                        <span class="px-3 py-1 bg-teal-900 bg-opacity-50 text-teal-300 rounded-full text-xs">MySQL</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                                        </a>
+                                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project 4 -->
+                                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-red-900 to-orange-900 opacity-70"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <i data-lucide="lock" class="w-16 h-16 text-white"></i>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                            <h4 class="text-white font-semibold">SecureAuth</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2 text-white">Login System with PHP</h3>
+                                    <p class="text-gray-400 mb-4">A secure authentication system with registration, login, password reset, and user management.</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
+                                        <span class="px-3 py-1 bg-teal-900 bg-opacity-50 text-teal-300 rounded-full text-xs">MySQL</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                                        </a>
+                                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project 5 -->
+                                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-blue-900 opacity-70"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <i data-lucide="shopping-cart" class="w-16 h-16 text-white"></i>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                            <h4 class="text-white font-semibold">TechShop</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2 text-white">E-commerce Platform</h3>
+                                    <p class="text-gray-400 mb-4">A full-featured online store with product catalog, cart, checkout, and admin dashboard.</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">React</span>
+                                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">Node.js</span>
+                                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">MongoDB</span>
+                                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">Express</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                                        </a>
+                                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Project 6 -->
+                                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                                        <div class="absolute inset-0 bg-gradient-to-br from-pink-900 to-red-900 opacity-70"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <i data-lucide="monitor" class="w-16 h-16 text-white"></i>
+                                        </div>
+                                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                            <h4 class="text-white font-semibold">Portfolio Template</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2 text-white">Creative Portfolio</h3>
+                                    <p class="text-gray-400 mb-4">A sleek, modern portfolio template for creative professionals with smooth animations.</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">GSAP</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                                        </a>
+                                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 purple-glow">
+                    View All Projects
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">My</span>
+                    <span class="text-neon-blue"> Services</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    I offer a range of services to help bring your digital vision to life with precision and creativity.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="layout" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Web Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Custom, responsive website designs that captivate your audience and reflect your brand identity with pixel-perfect precision.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            UI/UX Design
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Responsive Layouts
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Prototyping
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="code" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Front-End Development</h3>
+                    <p class="text-gray-400 mb-6">
+                        Clean, efficient code that brings designs to life with smooth animations, interactions, and optimal performance.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            HTML/CSS/JavaScript
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            React/Vue.js
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Performance Optimization
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-yellow-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="pen-tool" class="w-6 h-6 text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Intuitive user interfaces and seamless experiences that engage users and drive conversions.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            User Research
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Wireframing
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Prototyping
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-pink-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="image" class="w-6 h-6 text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Graphic Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Visually striking graphics, logos, and branding materials that make your business stand out.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Logo Design
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Brand Identity
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Marketing Materials
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="settings" class="w-6 h-6 text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Website Maintenance</h3>
+                    <p class="text-gray-400 mb-6">
+                        Ongoing support, updates, and optimizations to keep your website running smoothly and securely.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Regular Updates
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Security Patches
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Performance Tuning
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <i data-lucide="headphones" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Virtual Assistant</h3>
+                    <p class="text-gray-400 mb-6">
+                        Administrative and technical support to help streamline your business operations and digital presence.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Data Entry
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Content Management
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Customer Support
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">Client</span>
+                    <span class="text-neon-blue"> Testimonials</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    Don't just take my word for it. Here's what my clients have to say about working with me.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Sarah Johnson</h4>
+                            <p class="text-sm text-gray-400">CEO, Zeupreme Deli</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "Working with Zeus was an absolute pleasure. He took our vague ideas and turned them into a stunning website that perfectly represents our brand. His attention to detail is unmatched."
+                    </p>
+                    <div class="flex space-x-1">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Michael Chen</h4>
+                            <p class="text-sm text-gray-400">Director, GeoVision GIS</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "The GIS website Zeus developed for us exceeded all expectations. He understood our technical requirements and delivered a solution that's both powerful and user-friendly."
+                    </p>
+                    <div class="flex space-x-1">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Emily Rodriguez</h4>
+                            <p class="text-sm text-gray-400">Principal, Lincoln Academy</p>
+                        </div>
+                    </div>
+                   
+</html>
