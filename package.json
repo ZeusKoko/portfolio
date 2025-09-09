@@ -1,0 +1,20 @@
+{
+  "name": "zeus-portfolio",
+  "version": "1.0.0",
+  "description": "Zeus Portfolio - Creative Front-End Developer",
+  "main": "index.html",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "serve": "python -m http.server 8000",
+    "start": "npm run build-css && npm run serve"
+  },
+  "keywords": ["portfolio", "frontend", "developer", "tailwind"],
+  "author": "Zeus (Peter Kokonya)",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "@tailwindcss/typography": "^0.5.10"
+  }
+}
