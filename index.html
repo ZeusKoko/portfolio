@@ -5,11 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeus | Creative Front-End Developer</title>
     <link rel="stylesheet" href="./dist/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --neon-blue: #00f7ff;
+            --electric-purple: #b300ff;
+            --cyber-yellow: #ffee00;
+            --dark-bg: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 247, 255, 0.1) 0%, rgba(11, 11, 11, 0.9) 60%);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+        
+        .purple-glow {
+            box-shadow: 0 0 15px var(--electric-purple);
+        }
+        
+        .yellow-glow {
+            box-shadow: 0 0 15px var(--cyber-yellow);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(179, 0, 255, 0.3);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #111111, #0a0a0a);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 247, 255, 0.1);
+        }
+        
+        .service-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: var(--neon-blue);
+            transform: scale(1.03);
+        }
+        
+        .input-field {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--neon-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+        }
+        
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            margin: auto;
+        }
+        
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
 </head>
 <body class="relative">
     <!-- Animated background elements -->
@@ -53,6 +204,7 @@
                     <h1 class="text-4xl md:text-6xl font-bold mb-6">
                         <span class="text-white">Hi, I'm</span>
                         <span class="text-neon-blue neon-text">Zeus</span>
+                        <i class="fab fa-github text-white text-2xl ml-4"></i>
                     </h1>
                     <h2 class="text-2xl md:text-3xl font-medium mb-8 text-gray-300">
                         Creative Front-End Developer
@@ -311,7 +463,7 @@
                                             <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
                                         </a>
                                         <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
                                         </a>
                                     </div>
                                 </div>
@@ -338,7 +490,7 @@
                                             <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
                                         </a>
                                         <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
                                         </a>
                                     </div>
                                 </div>
@@ -364,7 +516,7 @@
                                             <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
                                         </a>
                                         <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
                                         </a>
                                     </div>
                                 </div>
@@ -390,7 +542,7 @@
                                             <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
                                         </a>
                                         <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
                                         </a>
                                     </div>
                                 </div>
@@ -410,286 +562,126 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="text-white">Creative</span>
+                    <span class="text-white">My</span>
                     <span class="text-neon-blue"> Gallery</span>
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    A showcase of my creative work - from graphic design to branding and digital art. Each piece tells a story of innovation and attention to detail.
+                    A collection of my creative work, designs, and projects. Click on any image to view it in full size.
                 </p>
             </div>
             
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Gallery Item 1 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/BLOSSOM.png" alt="Blossom Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Blossom Design</h3>
-                            <p class="text-gray-300 text-sm">Brand Identity</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/BLOSSOM.png')">
+                    <img src="gallery/BLOSSOM.png" alt="Blossom Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Blossom Design</h3>
+                        <p class="text-gray-400 text-sm">Creative floral illustration</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 2 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Blue Clouds</h3>
-                            <p class="text-gray-300 text-sm">Poster Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/blue CLOUDS poster design.png')">
+                    <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Blue Clouds Poster</h3>
+                        <p class="text-gray-400 text-sm">Modern poster design</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 3 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/customer service poster.png" alt="Customer Service Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Customer Service</h3>
-                            <p class="text-gray-300 text-sm">Poster Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design.png')">
+                    <img src="gallery/COOL CLOUDS poster design.png" alt="Cool Clouds Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Poster</h3>
+                        <p class="text-gray-400 text-sm">Abstract cloud design</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 4 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/KENYA UNCUT poster design.png" alt="Kenya Uncut Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Kenya Uncut</h3>
-                            <p class="text-gray-300 text-sm">Poster Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 2.png')">
+                    <img src="gallery/COOL CLOUDS poster design 2.png" alt="Cool Clouds Poster 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Variant</h3>
+                        <p class="text-gray-400 text-sm">Alternative cloud design</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 5 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/Misikhu AGM Poster Design.png" alt="Misikhu AGM Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Misikhu AGM</h3>
-                            <p class="text-gray-300 text-sm">Event Poster</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 3.png')">
+                    <img src="gallery/COOL CLOUDS poster design 3.png" alt="Cool Clouds Poster 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Series</h3>
+                        <p class="text-gray-400 text-sm">Third in the series</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 6 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/movement poster.jpg" alt="Movement Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Movement</h3>
-                            <p class="text-gray-300 text-sm">Poster Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 4.png')">
+                    <img src="gallery/COOL CLOUDS poster design 4.png" alt="Cool Clouds Poster 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Final</h3>
+                        <p class="text-gray-400 text-sm">Final design in series</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 7 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/product design crocs.png" alt="Crocs Product Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Crocs Design</h3>
-                            <p class="text-gray-300 text-sm">Product Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 5.png')">
+                    <img src="gallery/COOL CLOUDS poster design 5.png" alt="Cool Clouds Poster 5" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Extended</h3>
+                        <p class="text-gray-400 text-sm">Extended series design</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 8 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/street wear poster design.png" alt="Street Wear Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Street Wear</h3>
-                            <p class="text-gray-300 text-sm">Fashion Poster</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 6.png')">
+                    <img src="gallery/COOL CLOUDS poster design 6.png" alt="Cool Clouds Poster 6" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Complete</h3>
+                        <p class="text-gray-400 text-sm">Complete series design</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 9 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/UC Tilers  POSTER DESIGN.png" alt="UC Tilers Poster" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">UC Tilers</h3>
-                            <p class="text-gray-300 text-sm">Business Poster</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 7.png')">
+                    <img src="gallery/COOL CLOUDS poster design 7.png" alt="Cool Clouds Poster 7" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Master</h3>
+                        <p class="text-gray-400 text-sm">Master design piece</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 10 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/Zeupreme deli brand kit.png" alt="Zeupreme Deli Brand Kit" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Zeupreme Brand Kit</h3>
-                            <p class="text-gray-300 text-sm">Brand Identity</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 8.png')">
+                    <img src="gallery/COOL CLOUDS poster design 8.png" alt="Cool Clouds Poster 8" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Ultimate</h3>
+                        <p class="text-gray-400 text-sm">Ultimate design version</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 11 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/zeupreme deli menu.png" alt="Zeupreme Deli Menu" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Restaurant Menu</h3>
-                            <p class="text-gray-300 text-sm">Menu Design</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 9.png')">
+                    <img src="gallery/COOL CLOUDS poster design 9.png" alt="Cool Clouds Poster 9" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Premium</h3>
+                        <p class="text-gray-400 text-sm">Premium design edition</p>
                     </div>
                 </div>
                 
                 <!-- Gallery Item 12 -->
-                <div class="gallery-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800 hover:border-neon-blue transition-all duration-300 cursor-pointer">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="gallery/Zeupreme deli pd.png" alt="Zeupreme Deli Product Design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 right-4">
-                            <h3 class="text-white font-semibold text-lg mb-1">Product Design</h3>
-                            <p class="text-gray-300 text-sm">Brand Assets</p>
-                        </div>
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/COOL CLOUDS poster design 10.png')">
+                    <img src="gallery/COOL CLOUDS poster design 10.png" alt="Cool Clouds Poster 10" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Cool Clouds Collection</h3>
+                        <p class="text-gray-400 text-sm">Complete collection piece</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Call to Action -->
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-white mb-4">HAVE SOMETHING COOL TO SHARE?</h3>
-                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                    Let's collaborate on your next creative project. I'm always excited to work on new and innovative designs.
-                </p>
-                <a href="#contact" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 purple-glow">
-                    Get In Touch
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
         </div>
     </section>
-    
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-        </div>
-    </div>
-    
-    <!-- Gallery Script -->
-    <script>
-        console.log('Gallery script running...');
-        
-        // Simple lightbox functions
-        function openLightbox(imageSrc, imageAlt) {
-            console.log('Opening lightbox with:', imageSrc);
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            if (lightbox && lightboxImg) {
-                lightboxImg.src = imageSrc;
-                lightboxImg.alt = imageAlt;
-                lightbox.style.display = 'block';
-                lightbox.classList.add('show');
-                document.body.style.overflow = 'hidden';
-                console.log('Lightbox opened!');
-            } else {
-                console.error('Lightbox elements not found!');
-            }
-        }
-        
-        function closeLightbox() {
-            console.log('Closing lightbox');
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox) {
-                lightbox.classList.remove('show');
-                setTimeout(() => {
-                    lightbox.style.display = 'none';
-                }, 300);
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        window.openLightbox = openLightbox;
-        window.closeLightbox = closeLightbox;
-        
-        console.log('Functions defined:', {
-            openLightbox: typeof window.openLightbox,
-            closeLightbox: typeof window.closeLightbox
-        });
-        
-        // Set up gallery when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up gallery...');
-            
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            console.log('Found gallery items:', galleryItems.length);
-            
-            galleryItems.forEach((item, index) => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Gallery item clicked:', index);
-                    
-                    const img = this.querySelector('img');
-                    if (img) {
-                        openLightbox(img.src, img.alt);
-                    }
-                });
-            });
-            
-            // Close button
-            const closeBtn = document.querySelector('.lightbox-close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    closeLightbox();
-                });
-            }
-            
-            // Click outside to close
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) {
-                        closeLightbox();
-                    }
-                });
-            }
-            
-            // Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && lightbox && lightbox.style.display === 'block') {
-                    closeLightbox();
-                }
-            });
-            
-            console.log('Gallery setup complete!');
-        });
-    </script>
     
     <!-- Services Section -->
     <section id="services" class="py-20 relative">
@@ -886,12 +878,11 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-white">Sarah Mitchell</h4>
-                            <p class="text-sm text-gray-400">Owner, Zeupreme Deli</p>
-                            <p class="text-xs text-gray-500">Nairobi, Kenya</p>
+                            <p class="text-sm text-gray-400">Owner, Zeupreme Deli - Nairobi</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6">
-                        "Zeus transformed our small deli's online presence completely. Our online orders increased by 300% in just 3 months. He was always available for questions and delivered exactly what we needed. The website is fast, beautiful, and our customers love it."
+                        "Zeus transformed our small deli into a digital powerhouse. Our online orders increased by 300% within the first month. His attention to detail and understanding of our business needs was exceptional. The website is not just beautiful, it's functional and drives real results."
                     </p>
                     <div class="flex space-x-1">
                         <i class="fas fa-star text-yellow-400"></i>
@@ -912,12 +903,11 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-white">Dr. James Mwangi</h4>
-                            <p class="text-sm text-gray-400">Medical Director, Afya Yangu Hospital</p>
-                            <p class="text-xs text-gray-500">Mombasa, Kenya</p>
+                            <p class="text-sm text-gray-400">Medical Director, Afya Yangu Hospital - Mombasa</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6">
-                        "We needed a professional website for our hospital and Zeus delivered beyond our expectations. The appointment booking system works flawlessly, and the design instills confidence in our patients. He understood our medical requirements perfectly."
+                        "Working with Zeus on our hospital website was a game-changer. He understood the medical field's requirements and created a platform that's both professional and user-friendly. Patient appointments have increased significantly, and the online booking system works flawlessly. Highly recommended!"
                     </p>
                     <div class="flex space-x-1">
                         <i class="fas fa-star text-yellow-400"></i>
@@ -938,12 +928,11 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-white">Grace Wanjiku</h4>
-                            <p class="text-sm text-gray-400">Principal, St. Mary's Academy</p>
-                            <p class="text-xs text-gray-500">Kisumu, Kenya</p>
+                            <p class="text-sm text-gray-400">Principal, St. Mary's Academy - Kisumu</p>
                         </div>
                     </div>
                     <p class="text-gray-300 mb-6">
-                        "The student management system Zeus built for our school has revolutionized how we handle admissions and records. It's user-friendly for our staff and parents can easily track their children's progress. Highly recommend his services!"
+                        "The student management system Zeus developed for our school has revolutionized how we handle admissions and academic records. It's intuitive, secure, and has saved us countless hours of paperwork. The support and training he provided was outstanding. Our teachers love using it!"
                     </p>
                     <div class="flex space-x-1">
                         <i class="fas fa-star text-yellow-400"></i>
@@ -956,232 +945,157 @@
             </div>
         </div>
     </section>
-    
-    <!-- From Uiverse.io by ParasSalunke --> 
-    <section class="py-20 bg-black bg-opacity-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        <span class="text-white">Get</span>
-                        <span class="text-neon-blue"> In Touch</span>
-                    </h2>
-                    <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
-                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Let's connect! Follow me on social media to see my latest projects, insights, and updates.
-                    </p>
-                </div>
-            <style>
-                .social-icon {
-                    transition: color 0.2s;
-                }
-                .social-facebook:hover .social-icon {
-                    color: #1877F3; /* Facebook Blue */
-                }
-                .social-instagram:hover .social-icon {
-                    color: #E4405F; /* Instagram Pink */
-                }
-                .social-linkedin:hover .social-icon {
-                    color: #0A66C2; /* LinkedIn Blue */
-                }
-                .social-github:hover .social-icon {
-                    color: #333; /* GitHub Black */
-                }
-            </style>
-            <ul class="flex justify-center mt-5 space-x-5">
-                <li>
-                    <a
-                        href="https://web.facebook.com/pete.ktlzeus/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social-facebook text-gray-500 hover:text-[#1877F3] dark:text-gray-400"
-                        aria-label="Facebook"
-                    >
-                        <svg
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            class="w-10 h-10 social-icon"
-                        >
-                            <path
-                                clip-rule="evenodd"
-                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                fill-rule="evenodd"
-                            ></path>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.instagram.com/zeus_thought5/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social-instagram text-gray-500 hover:text-[#E4405F] dark:text-gray-400"
-                        aria-label="Instagram"
-                    >
-                        <svg
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            class="w-10 h-10 social-icon"
-                        >
-                            <path
-                                clip-rule="evenodd"
-                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                fill-rule="evenodd"
-                            ></path>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://www.linkedin.com/in/peter-kokonya-64293b2b3/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social-linkedin text-gray-500 hover:text-[#0A66C2] dark:text-gray-400"
-                        aria-label="LinkedIn"
-                    >
-                        <svg
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            class="w-10 h-10 social-icon"
-                        >
-                            <path
-                                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.76 1.75-1.76 1.75.79 1.75 1.76-.78 1.76-1.75 1.76zm15.25 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.61 2.01 3.61 4.62v5.56z"
-                            ></path>
-                        </svg>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="https://github.com/ZeusKoko"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="social-github text-gray-500 hover:text-[#333] dark:text-gray-400"
-                        aria-label="GitHub"
-                    >
-                        <!-- Use the official GitHub mark for best visibility -->
-                        <svg
-                            aria-hidden="true"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                            class="w-10 h-10 social-icon"
-                        >
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
-        </section>
-            
+                
+                    
+<!-- From Uiverse.io by ParasSalunke --> 
+<ul class="flex justify-center mt-5 space-x-5">
+    <li>
+      <a
+        class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-10 h-10"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-10 h-10"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-10 h-10"
+        >
+          <path
+            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-10 h-10"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-10 h-10"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  
+  
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
 
-</section>
-
-<script>
-    // Simple, bulletproof lightbox implementation
-    function openLightbox(imageSrc, imageAlt) {
-        console.log('Opening lightbox with:', imageSrc);
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
-        if (lightbox && lightboxImg) {
-            lightboxImg.src = imageSrc;
-            lightboxImg.alt = imageAlt;
-            lightbox.style.display = 'block';
-            lightbox.classList.add('show');
-            document.body.style.overflow = 'hidden';
-            console.log('Lightbox opened successfully!');
-        } else {
-            console.error('Lightbox elements not found!');
-        }
+  <script>
+    // Lightbox functionality
+    function openLightbox(imageSrc) {
+      console.log('Opening lightbox with:', imageSrc);
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      if (lightbox && lightboxImg) {
+        lightboxImg.src = imageSrc;
+        lightbox.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      } else {
+        console.error('Lightbox elements not found!');
+      }
     }
     
     function closeLightbox() {
-        console.log('Closing lightbox');
-        const lightbox = document.getElementById('lightbox');
-        if (lightbox) {
-            lightbox.classList.remove('show');
-            setTimeout(() => {
-                lightbox.style.display = 'none';
-            }, 300);
-            document.body.style.overflow = 'auto';
-        }
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
     }
     
-    // Test function
-    function testLightbox() {
-        console.log('Test lightbox called');
-        openLightbox('gallery/BLOSSOM.png', 'Test Image');
-    }
-    
-    // Make functions globally available
-    window.openLightbox = openLightbox;
-    window.closeLightbox = closeLightbox;
-    window.testLightbox = testLightbox;
-    
-    console.log('Functions defined:', {
-        openLightbox: typeof window.openLightbox,
-        closeLightbox: typeof window.closeLightbox,
-        testLightbox: typeof window.testLightbox
-    });
-    
-    // Initialize when DOM is ready
+    // Event listeners
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM loaded, setting up gallery...');
-        
-        // Add click listeners to gallery items
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        console.log('Found gallery items:', galleryItems.length);
-        
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('Gallery item clicked:', index);
-                
-                const img = this.querySelector('img');
-                if (img) {
-                    openLightbox(img.src, img.alt);
-                }
-            });
+      const lightbox = document.getElementById('lightbox');
+      const closeBtn = document.getElementById('lightbox-close');
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeLightbox);
+      }
+      
+      if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
         });
-        
-        // Close button
-        const closeBtn = document.querySelector('.lightbox-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                closeLightbox();
-            });
+      }
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeLightbox();
         }
-        
-        // Click outside to close
-        const lightbox = document.getElementById('lightbox');
-        if (lightbox) {
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-        }
-        
-        // Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox && lightbox.style.display === 'block') {
-                closeLightbox();
-            }
-        });
-        
-        console.log('Gallery setup complete!');
+      });
     });
-    
-    // Initialize Lucide icons
-    try {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    } catch (e) {
-        console.log('Lucide not available');
-    }
-</script>
-                   
+  </script>
+  
+  <script>lucide.createIcons();</script>
+</body>
 </html>
