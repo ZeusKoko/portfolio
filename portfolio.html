@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Zeus Gallery</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --neon-blue: #00f7ff;
+            --electric-purple: #b300ff;
+            --dark-bg: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .purple-glow {
+            box-shadow: 0 0 15px var(--electric-purple);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--neon-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            margin: auto;
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body class="relative">
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-900 opacity-20 blur-3xl animate-pulse"></div>
+        <div class="absolute top-2/3 right-1/3 w-80 h-80 rounded-full bg-blue-900 opacity-20 blur-3xl animate-pulse delay-300"></div>
+    </div>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b border-gray-900">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-white font-bold text-lg">Back to Home</a>
+            <span class="text-neon-blue font-semibold">Portfolio</span>
+        </div>
+    </nav>
+
+    <main class="pt-24">
+        <section id="gallery" class="py-20 relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="text-white">My</span>
+                        <span class="text-neon-blue"> Gallery</span>
+                    </h1>
+                    <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                        A collection of my creative work, designs, and projects. Click on any image to view it in full size.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/BLOSSOM.png')">
+                        <img src="gallery/BLOSSOM.png" alt="Blossom Design" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Blossom Design</h3>
+                            <p class="text-gray-400 text-sm">Creative floral illustration</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/blue CLOUDS poster design.png')">
+                        <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Blue Clouds Poster</h3>
+                            <p class="text-gray-400 text-sm">Modern poster design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/customer service poster.png')">
+                        <img src="gallery/customer service poster.png" alt="Customer Service Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Customer Service Poster</h3>
+                            <p class="text-gray-400 text-sm">Professional service design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/KENYA UNCUT poster design.png')">
+                        <img src="gallery/KENYA UNCUT poster design.png" alt="Kenya Uncut Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Kenya Uncut Poster</h3>
+                            <p class="text-gray-400 text-sm">Cultural design piece</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Misikhu AGM Poster Design.png')">
+                        <img src="gallery/Misikhu AGM Poster Design.png" alt="Misikhu AGM Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Misikhu AGM Poster</h3>
+                            <p class="text-gray-400 text-sm">Event poster design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/movement poster.jpg')">
+                        <img src="gallery/movement poster.jpg" alt="Movement Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Movement Poster</h3>
+                            <p class="text-gray-400 text-sm">Dynamic design piece</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/product design crocs.png')">
+                        <img src="gallery/product design crocs.png" alt="Product Design Crocs" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Product Design - Crocs</h3>
+                            <p class="text-gray-400 text-sm">Product design work</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/street wear poster design.png')">
+                        <img src="gallery/street wear poster design.png" alt="Street Wear Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Street Wear Poster</h3>
+                            <p class="text-gray-400 text-sm">Fashion design poster</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/UC Tilers  POSTER DESIGN.png')">
+                        <img src="gallery/UC Tilers  POSTER DESIGN.png" alt="UC Tilers Poster" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">UC Tilers Poster</h3>
+                            <p class="text-gray-400 text-sm">Business poster design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli brand kit.png')">
+                        <img src="gallery/Zeupreme deli brand kit.png" alt="Zeupreme Deli Brand Kit" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Zeupreme Deli Brand Kit</h3>
+                            <p class="text-gray-400 text-sm">Complete brand identity</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/zeupreme deli menu.png')">
+                        <img src="gallery/zeupreme deli menu.png" alt="Zeupreme Deli Menu" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Zeupreme Deli Menu</h3>
+                            <p class="text-gray-400 text-sm">Restaurant menu design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli product design.png')">
+                        <img src="gallery/Zeupreme deli product design.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Zeupreme Deli Product Design</h3>
+                            <p class="text-gray-400 text-sm">Product design work</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Andes Accessories Brand Board.png')">
+                        <img src="gallery/Andes Accessories Brand Board.png" alt="Andes Accessories Brand Board" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Andes Accessories Brand Board</h3>
+                            <p class="text-gray-400 text-sm">Complete brand identity</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/brown boba coffee pd.png')">
+                        <img src="gallery/brown boba coffee pd.png" alt="Brown Boba Coffee Product Design" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Brown Boba Coffee Design</h3>
+                            <p class="text-gray-400 text-sm">Coffee product design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Business Card Mockup.png')">
+                        <img src="gallery/Business Card Mockup.png" alt="Business Card Mockup" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Business Card Mockup</h3>
+                            <p class="text-gray-400 text-sm">Professional card design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Main Logo.png')">
+                        <img src="gallery/Main Logo.png" alt="Main Logo Design" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Main Logo Design</h3>
+                            <p class="text-gray-400 text-sm">Primary logo design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli pd.png')">
+                        <img src="gallery/Zeupreme deli pd.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-white font-semibold">Zeupreme Deli PD</h3>
+                            <p class="text-gray-400 text-sm">Additional product design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = imageSrc;
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox) {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('lightbox');
+            const closeBtn = document.getElementById('lightbox-close');
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeLightbox);
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
