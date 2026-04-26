@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeus | Front-End Developer & Graphics Designer</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --olive-deep: #40513B;
+            --olive-green: #628141;
+            --parchment: #E5D9B6;
+            --burnt-orange: #E67E22;
+            --ink: #151713;
+            --neon-blue: var(--burnt-orange);
+            --electric-purple: var(--olive-green);
+            --cyber-yellow: var(--parchment);
+            --dark-bg: var(--ink);
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--parchment);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: var(--ink);
+        }
+        
+        .neon-text {
+            color: var(--burnt-orange);
+            text-shadow: 0 0 18px rgba(230, 126, 34, 0.22);
+        }
+        
+        .purple-glow {
+            box-shadow: 0 12px 30px rgba(98, 129, 65, 0.28);
+        }
+        
+        .yellow-glow {
+            box-shadow: 0 0 15px rgba(229, 217, 182, 0.3);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(179, 0, 255, 0.3);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #111111, #0a0a0a);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 247, 255, 0.1);
+        }
+        
+        .service-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            border-color: var(--neon-blue);
+            transform: scale(1.03);
+        }
+        
+        .input-field {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 2px rgba(0, 247, 255, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--burnt-orange);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(229, 217, 182, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(229, 217, 182, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .portfolio-nav {
+            background: rgba(21, 23, 19, 0.74);
+            border-bottom: 1px solid rgba(229, 217, 182, 0.16);
+        }
+
+        .hero-video {
+            filter: saturate(0.88) contrast(1.08);
+        }
+
+        .hero-overlay {
+            background:
+                radial-gradient(circle at 50% 38%, rgba(98, 129, 65, 0.52), transparent 46%),
+                linear-gradient(180deg, rgba(21, 23, 19, 0.86) 0%, rgba(64, 81, 59, 0.58) 44%, rgba(21, 23, 19, 0.98) 100%);
+        }
+
+        .hero-media-stage {
+            background: rgba(229, 217, 182, 0.08);
+            border: 1px solid rgba(229, 217, 182, 0.18);
+            border-radius: 8px;
+            box-shadow: 0 36px 90px rgba(0, 0, 0, 0.36);
+            overflow: hidden;
+        }
+
+        .hero-media-stage::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(21, 23, 19, 0.36), transparent 24%, transparent 76%, rgba(21, 23, 19, 0.28)),
+                linear-gradient(180deg, transparent 58%, rgba(21, 23, 19, 0.64));
+        }
+
+        .tech-strip {
+            background: rgba(229, 217, 182, 0.94);
+            color: var(--ink);
+            border-radius: 999px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+        }
+
+        .tech-pill {
+            border-right: 1px solid rgba(21, 23, 19, 0.16);
+        }
+
+        .tech-pill:last-child {
+            border-right: 0;
+        }
+
+        .hero-title {
+            line-height: 0.84;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .hero-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(229, 217, 182, 0.72);
+            text-stroke: 1px rgba(229, 217, 182, 0.72);
+        }
+
+        .hero-kicker {
+            color: var(--parchment);
+            border: 1px solid rgba(229, 217, 182, 0.32);
+            background: rgba(64, 81, 59, 0.72);
+        }
+
+        .portfolio-button {
+            border: 1px solid rgba(229, 217, 182, 0.35);
+            border-radius: 4px;
+            color: var(--parchment);
+            transition: all 0.25s ease;
+        }
+
+        .portfolio-button:hover {
+            border-color: var(--burnt-orange);
+            background: rgba(230, 126, 34, 0.14);
+            color: #ffffff;
+        }
+
+        .portfolio-button-primary {
+            background: var(--burnt-orange);
+            border-color: var(--burnt-orange);
+            color: var(--ink);
+        }
+
+        .portfolio-button-primary:hover {
+            background: var(--parchment);
+            border-color: var(--parchment);
+            color: var(--ink);
+        }
+
+        .hero-stat {
+            border-left: 2px solid var(--burnt-orange);
+            background: rgba(21, 23, 19, 0.54);
+        }
+
+        .service-marquee {
+            background: var(--burnt-orange);
+            color: var(--ink);
+            border-top: 1px solid rgba(21, 23, 19, 0.32);
+            border-bottom: 1px solid rgba(21, 23, 19, 0.32);
+            white-space: nowrap;
+            transform: rotate(-5deg);
+            transform-origin: center;
+            box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
+        }
+
+        .service-marquee-track {
+            animation: marquee 24s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+        }
+        
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            margin: auto;
+        }
+        
+        #lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body class="relative">
+    <!-- Animated background elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute inset-0 grid-pattern"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="portfolio-nav fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
+        <div class="container mx-auto px-5 md:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold uppercase tracking-normal">
+                    <span class="text-white">Zeus</span>
+                    <span class="text-neon-blue">Koko</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-normal">
+                    <a href="#home" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Home</a>
+                    <a href="#about" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">About</a>
+                    <a href="#portfolio" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Work</a>
+                    <a href="#services" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Services</a>
+                    <a href="#gallery" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Gallery</a>
+                    <a href="#contact" class="portfolio-button portfolio-button-primary px-4 py-2 inline-flex items-center gap-2">
+                        <span>Contact</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+
+                </div>
+                
+                <button class="md:hidden text-[#E5D9B6] focus:outline-none" aria-label="Open menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative overflow-hidden hero-bg">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="absolute inset-0 grid-pattern opacity-60"></div>
+
+        <div class="container mx-auto px-5 md:px-6 pt-28 pb-32 md:pt-32 md:pb-36 relative z-10">
+            <div class="relative min-h-[720px] lg:min-h-[680px]">
+                <div class="hero-media-stage relative lg:absolute lg:left-1/2 lg:top-14 lg:z-10 lg:-translate-x-1/2 w-full lg:w-[52vw] max-w-[780px] h-[380px] sm:h-[500px] lg:h-[560px]">
+                    <video class="hero-video absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata" poster="./hero%20media/hero%20port.png" aria-hidden="true">
+                        <source src="./hero%20media/hero%20vid.mp4" type="video/mp4">
+                        <source src="./hero%20media/hero%20vid.mov" type="video/quicktime">
+                    </video>
+                </div>
+
+                <div class="relative z-20 grid gap-8 lg:grid-cols-[minmax(260px,0.86fr)_minmax(340px,1.18fr)_minmax(220px,0.76fr)] lg:items-start">
+                    <div class="lg:pt-24">
+                        <div class="tech-strip inline-flex max-w-full items-center overflow-hidden text-sm font-bold">
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="react.svg" alt="React" class="w-5 h-5">
+                                React
+                            </span>
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="laravel.svg" alt="Laravel" class="w-5 h-5">
+                                Laravel
+                            </span>
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="adobeps.svg" alt="Adobe Photoshop" class="w-5 h-5">
+                                Photoshop
+                            </span>
+                        </div>
+
+                        <h1 class="hero-title mt-8 text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold max-w-xl">
+                            <span class="block text-[#E5D9B6]">Creative</span>
+                            <span class="block text-[#E67E22]">Digital</span>
+                            <span class="block hero-outline">Builder</span>
+                        </h1>
+
+                        <div class="mt-8 max-w-md">
+                            <h2 class="text-2xl md:text-3xl font-bold text-white">Websites, brands, and visuals that move.</h2>
+                            <p class="mt-4 text-base md:text-lg text-[#E5D9B6]/82 leading-relaxed">
+                                I am Peter Kokonya, known as Zeus. I build expressive front-end experiences and sharp visual systems for brands that need to stand out.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <a href="#portfolio" class="portfolio-button portfolio-button-primary px-5 py-3 font-bold uppercase tracking-normal inline-flex items-center gap-2">
+                                <span>View Work</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#contact" class="portfolio-button px-5 py-3 font-bold uppercase tracking-normal inline-flex items-center gap-2">
+                                <span>Hire Me</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden lg:block"></div>
+
+                    <div class="lg:pt-28 lg:text-right">
+                        <div class="hero-kicker inline-flex items-center gap-2 px-3 py-2 text-xs md:text-sm font-bold uppercase tracking-normal">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-[#E67E22]"></i>
+                            Front-end + visual design
+                        </div>
+
+                        <div class="mt-8 grid grid-cols-3 gap-3 lg:grid-cols-1 text-[#E5D9B6]">
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">3+</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Years experience</span>
+                            </div>
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">12+</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Projects shipped</span>
+                            </div>
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">2</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Creative lanes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-marquee absolute left-1/2 bottom-12 z-30 w-[124vw] -translate-x-1/2 overflow-hidden">
+                <div class="service-marquee-track flex w-max text-2xl md:text-4xl font-bold uppercase tracking-normal py-5">
+                    <span class="px-5">Branding</span><span class="px-2">+</span>
+                    <span class="px-5">Graphic Design</span><span class="px-2">+</span>
+                    <span class="px-5">Web Design</span><span class="px-2">+</span>
+                    <span class="px-5">Front-end Development</span><span class="px-2">+</span>
+                    <span class="px-5">Digital Marketing Assets</span><span class="px-2">+</span>
+                    <span class="px-5">Branding</span><span class="px-2">+</span>
+                    <span class="px-5">Graphic Design</span><span class="px-2">+</span>
+                    <span class="px-5">Web Design</span><span class="px-2">+</span>
+                    <span class="px-5">Front-end Development</span><span class="px-2">+</span>
+                    <span class="px-5">Digital Marketing Assets</span><span class="px-2">+</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">About</span>
+                    <span class="text-neon-blue"> Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/3 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute -inset-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 opacity-70 blur-lg"></div>
+                        <div class="relative w-full h-full rounded-lg overflow-hidden bg-gray-900 border border-gray-800">
+                            <!-- Placeholder for about image -->
+                            <img src="pep.jpg" alt="My Profile Picture" class="w-full h-full object-cover" />
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3">
+                    <h3 class="text-2xl font-bold mb-6 text-white">
+                        Creative Developer & Visual Designer
+                    </h3>
+                    <p class="text-gray-400 mb-6">
+                        I'm Peter Kokonya, also known as Zeus, a front-end developer and graphics designer with over 3 years of experience crafting beautiful, functional websites and stunning visual designs. My journey began with a passion for both code and creativity, understanding how visual design and technical implementation work together.
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        What sets me apart is my unique combination of technical expertise and artistic vision. I don't just code websites—I design them from the ground up. From logo creation and brand identity to responsive web development, I handle every aspect of the digital design process. I'm obsessed with creating pixel-perfect interfaces and compelling visual designs that not only look stunning but also deliver seamless user experiences.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-xl font-semibold mb-4 text-white">My Skills</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                     <!-- Python -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-green-900 flex items-center justify-center overflow-hidden">
+                                    <img src="python.svg" alt="Python" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Python</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Laravel -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-red-900 flex items-center justify-center overflow-hidden">
+                                    <img src="laravel.svg" alt="Laravel" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Laravel</span>
+                                </div>
+                            </div>
+                            
+                            <!-- MySQL -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center overflow-hidden">
+                                    <img src="mysql.svg" alt="MySQL" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">MySQL</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Photoshop -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center overflow-hidden">
+                                    <img src="adobeps.svg" alt="Photoshop" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Adobe Photoshop</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Canva -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-cyan-900 flex items-center justify-center overflow-hidden">
+                                    <img src="html5.svg" alt="Canva" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">html5/css3</span>
+                                </div>
+                            </div>
+                            
+                            <!-- React -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-sky-900 flex items-center justify-center overflow-hidden">
+                                    <img src="react.svg" alt="React" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">React</span>
+                                </div>
+                            </div>
+        
+                                    <!-- Git & GitHub -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-orange-900 flex items-center justify-center overflow-hidden">
+                                    <i class="fab fa-github text-white text-lg"></i>
+                                </div>
+                                <span class="text-white">Git & GitHub</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Workspace -->
+                            <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
+                                <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center overflow-hidden">
+                                    <img src="google-workspace.svg" alt="Google Workspace" class="w-5 h-5">
+                                </div>
+                                <span class="text-white">Google Workspace</span>
+                                </div>
+                        </div>
+            
+                    </div>
+                    
+                    <a href="Kokonya CV.pdf" download="Kokonya_CV.pdf" class="inline-flex items-center px-6 py-3 border border-neon-blue text-neon-blue rounded-full font-medium hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300 mt-8">
+                        Download Resume
+                        <i data-lucide="download" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">My</span>
+                    <span class="text-neon-blue"> Work</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    Here are some of my recent projects. Each one was carefully crafted to deliver exceptional user experiences.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <!-- Project 1 -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="deli.png" alt="Zeupreme Deli Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Zeupreme Deli</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Restaurant Website</h3>
+                    <p class="text-gray-400 mb-4">A modern, responsive website for a premium deli restaurant with online ordering system.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">TAILWIND CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://zeupremedeli.netlify.app/" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/ZeusKoko/Deli" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+
+                
+                <!-- Project 2 - Afya Yangu -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="afyayangu.png" alt="Afya Yangu Hospital Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Afya Yangu Hospital</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Hospital Website</h3>
+                    <p class="text-gray-400 mb-4">A responsive hospital website featuring doctor profiles, services, appointment booking, and modern healthcare design.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">GSAP</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://afyayangu.netlify.app/" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/ZeusKoko/afyayangu" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+
+                            
+                <!-- Project 3 - Andes Accessories -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="andes accessories screenshot.png" alt="Andes Accessories Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Andes Accessories</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">E-commerce Website</h3>
+                    <p class="text-gray-400 mb-4">E-commerce site for Andes Accessories, a girly streetwear brand offering waist chains, pins, bags, watch bands, and more.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">E-commerce</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="https://andesa.netlify.app/" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/ZeusKoko/andes-accessories" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+                                
+                <!-- Project 4 - Student Management System -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="student.png" alt="EduManage Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">EduManage</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Student Management System</h3>
+                    <p class="text-gray-400 mb-4">A comprehensive system for educational institutions to manage students, courses, and grades with admin dashboard.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
+                        <span class="px-3 py-1 bg-teal-900 bg-opacity-50 text-teal-300 rounded-full text-xs">MySQL</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+                                
+                                <!-- Project 5 -->
+                                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                                          <img src="techshop.png" alt="TechShop Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                                            <h4 class="text-white font-semibold">TechShop</h4>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2 text-white">E-commerce Platform</h3>
+                                    <p class="text-gray-400 mb-4">A full-featured online store with product catalog, cart, checkout, and admin dashboard.</p>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">React</span>
+                                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">Node.js</span>
+                                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">MongoDB</span>
+                                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">Express</span>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                                        </a>
+                                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                                            <i data-lucide="github" class="w-4 h-4 mr-1"></i> Code
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                <!-- Project 6 - To-Do List App -->
+                <div class="project-card rounded-xl p-6 hover:shadow-lg">
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
+                        <img src="todo.png" alt="To-Do List App Screenshot" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-semibold">Task Manager</h4>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">To-Do List Web App</h3>
+                    <p class="text-gray-400 mb-4">A sleek and responsive to-do list app with local storage support, allowing users to track, edit, and complete tasks with ease.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
+                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
+                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
+                        </a>
+                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
+                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        </a>
+                    </div>
+                </div>
+                            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 purple-glow">
+                    View All Projects
+                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">My</span>
+                    <span class="text-neon-blue"> Gallery</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    A collection of my creative work, designs, and projects. Click on any image to view it in full size.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/BLOSSOM.png')">
+                    <img src="gallery/BLOSSOM.png" alt="Blossom Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Blossom Design</h3>
+                        <p class="text-gray-400 text-sm">Creative floral illustration</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/blue CLOUDS poster design.png')">
+                    <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Blue Clouds Poster</h3>
+                        <p class="text-gray-400 text-sm">Modern poster design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/customer service poster.png')">
+                    <img src="gallery/customer service poster.png" alt="Customer Service Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Customer Service Poster</h3>
+                        <p class="text-gray-400 text-sm">Professional service design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/KENYA UNCUT poster design.png')">
+                    <img src="gallery/KENYA UNCUT poster design.png" alt="Kenya Uncut Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Kenya Uncut Poster</h3>
+                        <p class="text-gray-400 text-sm">Cultural design piece</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Misikhu AGM Poster Design.png')">
+                    <img src="gallery/Misikhu AGM Poster Design.png" alt="Misikhu AGM Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Misikhu AGM Poster</h3>
+                        <p class="text-gray-400 text-sm">Event poster design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/movement poster.jpg')">
+                    <img src="gallery/movement poster.jpg" alt="Movement Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Movement Poster</h3>
+                        <p class="text-gray-400 text-sm">Dynamic design piece</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/product design crocs.png')">
+                    <img src="gallery/product design crocs.png" alt="Product Design Crocs" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Product Design - Crocs</h3>
+                        <p class="text-gray-400 text-sm">Product design work</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/street wear poster design.png')">
+                    <img src="gallery/street wear poster design.png" alt="Street Wear Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Street Wear Poster</h3>
+                        <p class="text-gray-400 text-sm">Fashion design poster</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/UC Tilers  POSTER DESIGN.png')">
+                    <img src="gallery/UC Tilers  POSTER DESIGN.png" alt="UC Tilers Poster" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">UC Tilers Poster</h3>
+                        <p class="text-gray-400 text-sm">Business poster design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 10 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli brand kit.png')">
+                    <img src="gallery/Zeupreme deli brand kit.png" alt="Zeupreme Deli Brand Kit" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Zeupreme Deli Brand Kit</h3>
+                        <p class="text-gray-400 text-sm">Complete brand identity</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 11 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/zeupreme deli menu.png')">
+                    <img src="gallery/zeupreme deli menu.png" alt="Zeupreme Deli Menu" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Zeupreme Deli Menu</h3>
+                        <p class="text-gray-400 text-sm">Restaurant menu design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 12 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli product design.png')">
+                    <img src="gallery/Zeupreme deli product design.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Zeupreme Deli Product Design</h3>
+                        <p class="text-gray-400 text-sm">Product design work</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 13 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Andes Accessories Brand Board.png')">
+                    <img src="gallery/Andes Accessories Brand Board.png" alt="Andes Accessories Brand Board" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Andes Accessories Brand Board</h3>
+                        <p class="text-gray-400 text-sm">Complete brand identity</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 14 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/brown boba coffee pd.png')">
+                    <img src="gallery/brown boba coffee pd.png" alt="Brown Boba Coffee Product Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Brown Boba Coffee Design</h3>
+                        <p class="text-gray-400 text-sm">Coffee product design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 15 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Business Card Mockup.png')">
+                    <img src="gallery/Business Card Mockup.png" alt="Business Card Mockup" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Business Card Mockup</h3>
+                        <p class="text-gray-400 text-sm">Professional card design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 16 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Main Logo.png')">
+                    <img src="gallery/Main Logo.png" alt="Main Logo Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Main Logo Design</h3>
+                        <p class="text-gray-400 text-sm">Primary logo design</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 17 -->
+                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli pd.png')">
+                    <img src="gallery/Zeupreme deli pd.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold">Zeupreme Deli PD</h3>
+                        <p class="text-gray-400 text-sm">Additional product design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">My</span>
+                    <span class="text-neon-blue"> Services</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    I offer a range of services to help bring your digital vision to life with precision and creativity.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-red-800 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="video.svg" alt="Video Editing Logo" class="w-10 h-10 object-contain rounded-full" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Video Editing</h3>
+                    <p class="text-gray-400 mb-6">
+                        High-quality video editing for social media, content creation, and digital marketing. Professional visuals that engage and convert.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        YouTube & Social Clips
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        Smooth Transitions & Effects
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        Subtitles & Branding
+                        </li>
+                    </ul>
+                    </div>
+
+                
+                <!-- Service 2 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                   <div class="w-14 h-14 rounded-full bg-green-800 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="website.svg" alt="Digital Marketing Logo" class="w-10 h-10 object-contain rounded-full" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Front-End Development</h3>
+                    <p class="text-gray-400 mb-6">
+                        Clean, efficient code that brings designs to life with smooth animations, interactions, and optimal performance.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            HTML/CSS/JavaScript
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            React/Vue.js
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Performance Optimization
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-green-800 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="digital.svg" alt="Digital Marketing Logo" class="w-11 h-11 object-contain rounded-full" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Digital Marketing</h3>
+                    <p class="text-gray-400 mb-6">
+                        Drive traffic, grow engagement, and boost sales with effective online strategies, including content, SEO, and ads.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        Social Media Campaigns
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        Email & SEO Marketing
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                        <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                        Analytics & Insights
+                        </li>
+                    </ul>
+                    </div>
+
+                
+                <!-- Service 4 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                                       <div class="w-14 h-14 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="art.svg" alt="Virtual Assistant Logo" class="w-12 h-12 object-contain rounded-full" />
+                        </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Graphic Design</h3>
+                    <p class="text-gray-400 mb-6">
+                        Visually striking graphics, logos, and branding materials that make your business stand out.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Logo Design
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Brand Identity
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Marketing Materials
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-green-800 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="websitemaitenance.svg" alt="Digital Marketing Logo" class="w-8 h-8 object-contain rounded-full" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Website Maintenance</h3>
+                    <p class="text-gray-400 mb-6">
+                        Ongoing support, updates, and optimizations to keep your website running smoothly and securely.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Regular Updates
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Security Patches
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Performance Tuning
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card p-8 rounded-xl bg-gray-900 bg-opacity-50 backdrop-blur-sm">
+                    <div class="w-14 h-14 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-6">
+                        <img src="customer.svg" alt="Virtual Assistant Logo" class="w-12 h-12 object-contain rounded-full" />
+                        </div>
+
+                    <h3 class="text-xl font-bold mb-4 text-white">Virtual Assistant</h3>
+                    <p class="text-gray-400 mb-6">
+                        Administrative and technical support to help streamline your business operations and digital presence.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Data Entry
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Content Management
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
+                            Customer Support
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">Client</span>
+                    <span class="text-neon-blue"> Testimonials</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                    Don't just take my word for it. Here's what my clients have to say about working with me.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Sarah Mitchell</h4>
+                            <p class="text-sm text-gray-400">Owner, Zeupreme Deli - Nairobi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "Zeus transformed our small deli into a digital powerhouse. Our online orders increased by 300% within the first month. His attention to detail and understanding of our business needs was exceptional. The website is not just beautiful, it's functional and drives real results."
+                    </p>
+                    <div class="flex space-x-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Dr. James Mwangi</h4>
+                            <p class="text-sm text-gray-400">Medical Director, Afya Yangu Hospital - Mombasa</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "Working with Zeus on our hospital website was a game-changer. He understood the medical field's requirements and created a platform that's both professional and user-friendly. Patient appointments have increased significantly, and the online booking system works flawlessly. Highly recommended!"
+                    </p>
+                    <div class="flex space-x-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 border border-gray-800">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden bg-gray-800 mr-4">
+                            <div class="w-full h-full flex items-center justify-center">
+                                <i class="fas fa-user text-gray-500"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Grace Wanjiku</h4>
+                            <p class="text-sm text-gray-400">Principal, St. Mary's Academy - Kisumu</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        "The student management system Zeus developed for our school has revolutionized how we handle admissions and academic records. It's intuitive, secure, and has saved us countless hours of paperwork. The support and training he provided was outstanding. Our teachers love using it!"
+                    </p>
+                    <div class="flex space-x-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">Get</span>
+                    <span class="text-neon-blue"> In Touch</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                Connect with me on social media to stay updated, ask questions, or just say hello! I'm always open to networking and new opportunities.
+
+                </p>
+            </div>
+                    
+            <!-- From Uiverse.io by ParasSalunke --> 
+            <style>
+                /* Email */
+                a[aria-label="Email"]:hover svg {
+                    color: #EA4335 !important;
+                    fill: #EA4335 !important;
+                }
+                /* LinkedIn */
+                a[aria-label="LinkedIn"]:hover svg {
+                    color: #0A66C2 !important;
+                    fill: #0A66C2 !important;
+                }
+                /* Facebook */
+                a[aria-label="Facebook"]:hover svg {
+                    color: #1877F3 !important;
+                    fill: #1877F3 !important;
+                }
+                /* Instagram (gradient) */
+                a[aria-label="Instagram"]:hover svg path {
+                    /* Instagram gradient as a fallback to solid color */
+                    color: #E1306C !important;
+                    fill: url(#instagram-gradient) !important;
+                }
+            </style>
+            <!-- SVG gradient for Instagram -->
+            <svg width="0" height="0">
+                <defs>
+                    <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f58529"/>
+                        <stop offset="30%" stop-color="#dd2a7b"/>
+                        <stop offset="60%" stop-color="#8134af"/>
+                        <stop offset="100%" stop-color="#515bd4"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <ul class="flex justify-center mt-5 space-x-5">
+                <!-- gmail  -->
+                <li>
+                <a
+                    href="mailto:kokonyazeus@gmail.com"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="Email"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path
+                        d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+                    ></path>
+                    <path
+                        d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+                <!--linkedin -->
+                <li>
+                <a
+                    href="https://www.linkedin.com/in/peter-kokonya/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="LinkedIn"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76 0-.97.78-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.78 1.76-1.75 1.76zm15.25 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.75 1.38-1.54 2.85-1.54 3.05 0 3.61 2.01 3.61 4.62v5.56z"/>
+                    </svg>
+                </a>
+                </li>
+
+                <!-- facebook -->
+                <li>
+                <a
+                    href="https://www.facebook.com/pete.ktlzeus/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="Facebook"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path
+                        clip-rule="evenodd"
+                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                        fill-rule="evenodd"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+
+                <!-- instagram -->
+                <li>
+                <a
+                    href="https://www.instagram.com/zeus_kokonya/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="Instagram"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path
+                        clip-rule="evenodd"
+                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                        fill-rule="evenodd"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+
+                <!-- twitter x -->
+                <li>
+                <a
+                    href="https://x.com/kokonyazeus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="Twitter"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path
+                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+
+                <!-- github -->
+                <li>
+                <a
+                    href="https://github.com/ZeusKoko"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    aria-label="GitHub"
+                >
+                    <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-10 h-10"
+                    >
+                    <path
+                        clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        fill-rule="evenodd"
+                    ></path>
+                    </svg>
+                </a>
+                </li>
+            </ul>
+            </div>
+        </section>
+  
+  
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    // Lightbox functionality
+    function openLightbox(imageSrc) {
+      console.log('Opening lightbox with:', imageSrc);
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      if (lightbox && lightboxImg) {
+        lightboxImg.src = imageSrc;
+        lightbox.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      } else {
+        console.error('Lightbox elements not found!');
+      }
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightbox = document.getElementById('lightbox');
+      const closeBtn = document.getElementById('lightbox-close');
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeLightbox);
+      }
+      
+      if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+  
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -9,10 +9,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neon-blue': '#00f7ff',
-        'electric-purple': '#b300ff',
-        'cyber-yellow': '#ffee00',
-        'dark-bg': '#0a0a0a',
+        'neon-blue': '#E67E22',
+        'electric-purple': '#628141',
+        'cyber-yellow': '#E5D9B6',
+        'dark-bg': '#151713',
+        'olive-deep': '#40513B',
+        'olive-green': '#628141',
+        'parchment': '#E5D9B6',
+        'burnt-orange': '#E67E22',
       },
       fontFamily: {
         'space-grotesk': ['Space Grotesk', 'sans-serif'],

@@ -14,59 +14,103 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --neon-blue: #00f7ff;
-            --electric-purple: #b300ff;
-            --cyber-yellow: #ffee00;
-            --dark-bg: #0a0a0a;
+            --olive-deep: #40513B;
+            --olive-green: #628141;
+            --parchment: #E5D9B6;
+            --burnt-orange: #E67E22;
+            --ink: #151713;
+            --neon-blue: var(--burnt-orange);
+            --electric-purple: var(--olive-green);
+            --cyber-yellow: var(--parchment);
+            --dark-bg: var(--ink);
         }
         
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--dark-bg);
-            color: white;
+            color: var(--parchment);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
         
         .hero-bg {
-            background: radial-gradient(circle at 50% 50%, rgba(0, 247, 255, 0.1) 0%, rgba(11, 11, 11, 0.9) 60%);
+            background: #E3D0B4;
         }
         
         .neon-text {
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            color: var(--burnt-orange);
+            text-shadow: 0 0 18px rgba(230, 126, 34, 0.22);
         }
         
         .purple-glow {
-            box-shadow: 0 0 15px var(--electric-purple);
+            box-shadow: 0 12px 30px rgba(98, 129, 65, 0.28);
         }
         
         .yellow-glow {
-            box-shadow: 0 0 15px var(--cyber-yellow);
+            box-shadow: 0 0 15px rgba(229, 217, 182, 0.3);
+        }
+
+        .skill-card {
+            background: rgba(21, 23, 19, 0.86);
+            border: 1px solid rgba(229, 217, 182, 0.14);
+            border-radius: 8px;
         }
         
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(179, 0, 255, 0.3);
+            border-color: rgba(230, 126, 34, 0.58);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26);
         }
         
         .project-card {
             transition: all 0.3s ease;
-            background: linear-gradient(145deg, #111111, #0a0a0a);
+            background: linear-gradient(145deg, rgba(21, 23, 19, 0.94), rgba(64, 81, 59, 0.72));
+            border: 1px solid rgba(229, 217, 182, 0.14);
+            border-radius: 8px;
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 247, 255, 0.1);
+            border-color: rgba(230, 126, 34, 0.62);
+            box-shadow: 0 20px 42px rgba(0, 0, 0, 0.32);
+        }
+
+        .project-card span {
+            background: rgba(64, 81, 59, 0.86) !important;
+            border: 1px solid rgba(229, 217, 182, 0.14);
+            color: var(--parchment) !important;
         }
         
         .service-card {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(229, 217, 182, 0.16);
+            background: linear-gradient(145deg, rgba(21, 23, 19, 0.92), rgba(64, 81, 59, 0.58));
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
         
         .service-card:hover {
-            border-color: var(--neon-blue);
-            transform: scale(1.03);
+            border-color: var(--burnt-orange);
+            transform: translateY(-6px);
+        }
+
+        .work-visual {
+            background:
+                linear-gradient(135deg, rgba(229, 217, 182, 0.12), rgba(230, 126, 34, 0.18)),
+                linear-gradient(145deg, #40513B, #151713);
+        }
+
+        .contact-social {
+            background: rgba(21, 23, 19, 0.82);
+            border: 1px solid rgba(229, 217, 182, 0.16);
+            border-radius: 8px;
+            color: var(--parchment);
+            transition: all 0.25s ease;
+        }
+
+        .contact-social:hover {
+            border-color: var(--burnt-orange);
+            color: var(--burnt-orange);
+            transform: translateY(-4px);
         }
         
         .input-field {
@@ -91,7 +135,7 @@
             height: 2px;
             bottom: -2px;
             left: 0;
-            background-color: var(--neon-blue);
+            background-color: var(--burnt-orange);
             transition: width 0.3s ease;
         }
         
@@ -111,9 +155,130 @@
         
         .grid-pattern {
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(229, 217, 182, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(229, 217, 182, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
+        }
+
+        .portfolio-nav {
+            background: rgba(21, 23, 19, 0.74);
+            border-bottom: 1px solid rgba(229, 217, 182, 0.16);
+        }
+
+        .hero-video {
+            filter: saturate(0.88) contrast(1.08);
+        }
+
+        .hero-full-image {
+            object-position: center center;
+            filter: saturate(0.95) contrast(1.04);
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(90deg, rgba(21, 23, 19, 0.9) 0%, rgba(64, 81, 59, 0.42) 36%, rgba(64, 81, 59, 0.2) 60%, rgba(21, 23, 19, 0.82) 100%),
+                linear-gradient(180deg, rgba(21, 23, 19, 0.34) 0%, rgba(21, 23, 19, 0.08) 42%, rgba(21, 23, 19, 0.86) 100%);
+        }
+
+        .hero-media-stage {
+            background: rgba(229, 217, 182, 0.08);
+            border: 1px solid rgba(229, 217, 182, 0.18);
+            border-radius: 8px;
+            box-shadow: 0 36px 90px rgba(0, 0, 0, 0.36);
+            overflow: hidden;
+        }
+
+        .hero-media-stage::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(21, 23, 19, 0.36), transparent 24%, transparent 76%, rgba(21, 23, 19, 0.28)),
+                linear-gradient(180deg, transparent 58%, rgba(21, 23, 19, 0.64));
+        }
+
+        .tech-strip {
+            background: rgba(229, 217, 182, 0.94);
+            color: var(--ink);
+            border-radius: 999px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+        }
+
+        .tech-pill {
+            border-right: 1px solid rgba(21, 23, 19, 0.16);
+        }
+
+        .tech-pill:last-child {
+            border-right: 0;
+        }
+
+        .hero-title {
+            line-height: 0.84;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .hero-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(229, 217, 182, 0.72);
+            text-stroke: 1px rgba(229, 217, 182, 0.72);
+        }
+
+        .hero-kicker {
+            color: var(--parchment);
+            border: 1px solid rgba(229, 217, 182, 0.32);
+            background: rgba(64, 81, 59, 0.72);
+        }
+
+        .portfolio-button {
+            border: 1px solid rgba(229, 217, 182, 0.35);
+            border-radius: 4px;
+            color: var(--parchment);
+            transition: all 0.25s ease;
+        }
+
+        .portfolio-button:hover {
+            border-color: var(--burnt-orange);
+            background: rgba(230, 126, 34, 0.14);
+            color: #ffffff;
+        }
+
+        .portfolio-button-primary {
+            background: var(--burnt-orange);
+            border-color: var(--burnt-orange);
+            color: var(--ink);
+        }
+
+        .portfolio-button-primary:hover {
+            background: var(--parchment);
+            border-color: var(--parchment);
+            color: var(--ink);
+        }
+
+        .hero-stat {
+            border-left: 2px solid var(--burnt-orange);
+            background: rgba(21, 23, 19, 0.54);
+        }
+
+        .service-marquee {
+            background: var(--burnt-orange);
+            color: var(--ink);
+            border-top: 1px solid rgba(21, 23, 19, 0.32);
+            border-bottom: 1px solid rgba(21, 23, 19, 0.32);
+            white-space: nowrap;
+            transform: translateX(-50%) rotate(-5deg);
+            transform-origin: center;
+            box-shadow: 0 22px 44px rgba(0, 0, 0, 0.28);
+        }
+
+        .service-marquee-track {
+            animation: marquee 24s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
         
         .gallery-item {
@@ -166,81 +331,140 @@
     <!-- Animated background elements -->
     <div class="fixed inset-0 overflow-hidden -z-10">
         <div class="absolute inset-0 grid-pattern"></div>
-        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-900 opacity-20 blur-3xl animate-pulse"></div>
-        <div class="absolute top-2/3 right-1/3 w-80 h-80 rounded-full bg-blue-900 opacity-20 blur-3xl animate-pulse delay-300"></div>
     </div>
     
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 border-b border-gray-900">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="portfolio-nav fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
+        <div class="container mx-auto px-5 md:px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold">
-                    <span class="text-white">ZEUS</span>
-                    <span class="text-neon-blue">.</span>
+                <a href="#" class="text-2xl font-bold uppercase tracking-normal">
+                    <span class="text-white">Zeus</span>
+                    <span class="text-neon-blue">Koko</span>
                 </a>
                 
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-white hover:text-neon-blue transition">Home</a>
-                    <a href="#about" class="nav-link text-white hover:text-neon-blue transition">About</a>
-                    <a href="#portfolio" class="nav-link text-white hover:text-neon-blue transition">Work</a>
-                    <a href="#services" class="nav-link text-white hover:text-neon-blue transition">Services</a>
-                    <a href="#contact" class="nav-link text-white hover:text-neon-blue transition">Contact</a>
-                    <a href="#gallery" class="nav-link text-white hover:text-neon-blue transition">Gallery</a>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-normal">
+                    <a href="#home" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Home</a>
+                    <a href="#about" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">About</a>
+                    <a href="#portfolio" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Work</a>
+                    <a href="#services" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Services</a>
+                    <a href="#gallery" class="nav-link text-[#E5D9B6] hover:text-[#E67E22] transition">Gallery</a>
+                    <a href="#contact" class="portfolio-button portfolio-button-primary px-4 py-2 inline-flex items-center gap-2">
+                        <span>Contact</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
 
                 </div>
                 
-                <button class="md:hidden text-white focus:outline-none">
-                    <i data-lucide="menu"></i>
+                <button id="mobile-menu-toggle" class="md:hidden text-[#E5D9B6] focus:outline-none" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <i data-lucide="menu" class="mobile-menu-icon"></i>
                 </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden pt-5 pb-2">
+                <div class="grid gap-3 text-sm font-bold uppercase tracking-normal">
+                    <a href="#home" class="mobile-menu-link border border-[#E5D9B6]/20 bg-[#151713]/80 px-4 py-3 text-[#E5D9B6] hover:border-[#E67E22] hover:text-[#E67E22] transition">Home</a>
+                    <a href="#about" class="mobile-menu-link border border-[#E5D9B6]/20 bg-[#151713]/80 px-4 py-3 text-[#E5D9B6] hover:border-[#E67E22] hover:text-[#E67E22] transition">About</a>
+                    <a href="#portfolio" class="mobile-menu-link border border-[#E5D9B6]/20 bg-[#151713]/80 px-4 py-3 text-[#E5D9B6] hover:border-[#E67E22] hover:text-[#E67E22] transition">Work</a>
+                    <a href="#services" class="mobile-menu-link border border-[#E5D9B6]/20 bg-[#151713]/80 px-4 py-3 text-[#E5D9B6] hover:border-[#E67E22] hover:text-[#E67E22] transition">Services</a>
+                    <a href="#gallery" class="mobile-menu-link border border-[#E5D9B6]/20 bg-[#151713]/80 px-4 py-3 text-[#E5D9B6] hover:border-[#E67E22] hover:text-[#E67E22] transition">Gallery</a>
+                    <a href="#contact" class="mobile-menu-link portfolio-button portfolio-button-primary px-4 py-3 inline-flex items-center justify-between">
+                        <span>Contact</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
     
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden hero-bg">
-        <div class="container mx-auto px-6 py-20 md:py-0">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-16 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                        <span class="text-white">Hi, I'm</span>
-                        <span class="text-neon-blue neon-text">Zeus</span>
-                        <i class="fab fa-github text-white text-2xl ml-4"></i>
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-medium mb-8 text-gray-300">
-                        Front-End Developer & Graphics Designer
-                    </h2>
-                    <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-lg">
-                        I bridge the gap between code and creativity. As both a front-end developer and graphics designer, I transform bold ideas into pixel-perfect digital experiences and stunning visual designs that captivate and convert.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all duration-300 transform hover:scale-105 purple-glow">
-                            View My Work
-                        </a>
-                        <a href="#contact" class="px-8 py-3 border border-neon-blue text-neon-blue rounded-full font-medium hover:bg-neon-blue hover:bg-opacity-10 transition-all duration-300 transform hover:scale-105">
-                            Hire Me
-                        </a>
+    <section id="home" class="min-h-screen relative overflow-hidden hero-bg">
+        <img src="./hero%20media/hero%20port.png" alt="Zeus creative portfolio hero" class="hero-full-image absolute inset-0 w-full h-full object-cover">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="absolute inset-0 grid-pattern opacity-60"></div>
+
+        <div class="container mx-auto px-5 md:px-6 pt-28 pb-32 md:pt-32 md:pb-36 relative z-10">
+            <div class="relative min-h-[720px] lg:min-h-[680px]">
+                <div class="relative z-20 grid gap-8 lg:grid-cols-[minmax(260px,0.86fr)_minmax(340px,1.18fr)_minmax(220px,0.76fr)] lg:items-start">
+                    <div class="lg:pt-24">
+                        <div class="tech-strip inline-flex max-w-full items-center overflow-hidden text-sm font-bold">
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="react.svg" alt="React" class="w-5 h-5">
+                                React
+                            </span>
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="laravel.svg" alt="Laravel" class="w-5 h-5">
+                                Laravel
+                            </span>
+                            <span class="tech-pill inline-flex items-center gap-2 px-3 py-2">
+                                <img src="adobeps.svg" alt="Adobe Photoshop" class="w-5 h-5">
+                                Photoshop
+                            </span>
+                        </div>
+
+                        <h1 class="hero-title mt-8 text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-bold max-w-xl">
+                            <span class="block text-[#E5D9B6]">Creative</span>
+                            <span class="block text-[#E67E22]">Digital</span>
+                            <span class="block hero-outline">Builder</span>
+                        </h1>
+
+                        <div class="mt-8 max-w-md">
+                            <h2 class="text-2xl md:text-3xl font-bold text-white">Websites, brands, and visuals that move.</h2>
+                            <p class="mt-4 text-base md:text-lg text-[#E5D9B6]/82 leading-relaxed">
+                                I am Peter Kokonya, known as Zeus. I build expressive front-end experiences and sharp visual systems for brands that need to stand out.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <a href="#portfolio" class="portfolio-button portfolio-button-primary px-5 py-3 font-bold uppercase tracking-normal inline-flex items-center gap-2">
+                                <span>View Work</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#contact" class="portfolio-button px-5 py-3 font-bold uppercase tracking-normal inline-flex items-center gap-2">
+                                <span>Hire Me</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-20 blur-xl animate-pulse"></div>
-                        <div class="absolute inset-4 rounded-full border-2 border-neon-blue border-opacity-30 animate-spin-slow"></div>
-                        <div class="absolute inset-8 rounded-full border-2 border-neon-blue border-opacity-20 animate-spin-slow-reverse"></div>
-                        <div class="relative w-full h-full flex items-center justify-center">
-                            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-neon-blue animate-float">
-                               <!-- Profile image -->
-                                <img src="pic1.jpg" alt="Zeus Profile Picture" class="w-full h-full object-cover" />
+
+                    <div class="hidden lg:block"></div>
+
+                    <div class="lg:pt-28 lg:text-right">
+                        <div class="hero-kicker inline-flex items-center gap-2 px-3 py-2 text-xs md:text-sm font-bold uppercase tracking-normal">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-[#E67E22]"></i>
+                            Front-end + visual design
+                        </div>
+
+                        <div class="mt-8 grid grid-cols-3 gap-3 lg:grid-cols-1 text-[#E5D9B6]">
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">3+</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Years experience</span>
+                            </div>
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">12+</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Projects shipped</span>
+                            </div>
+                            <div class="hero-stat px-4 py-3 lg:ml-auto lg:w-44">
+                                <span class="block text-2xl md:text-3xl font-bold text-white">2</span>
+                                <span class="block text-[11px] uppercase tracking-normal text-[#E5D9B6]/75">Creative lanes</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="absolute bottom-10 left-0 right-0 flex justify-center">
-                <a href="#about" class="animate-bounce">
-                    <i data-lucide="chevron-down" class="w-8 h-8 text-neon-blue"></i>
-                </a>
+
+                <div class="service-marquee relative left-1/2 z-30 mt-12 w-[160vw] overflow-hidden lg:absolute lg:bottom-12 lg:mt-0 lg:w-[150vw]">
+                <div class="service-marquee-track flex w-max text-xl md:text-3xl lg:text-4xl font-bold uppercase tracking-normal py-4 md:py-5">
+                    <span class="px-5">Branding</span><span class="px-2">+</span>
+                    <span class="px-5">Graphic Design</span><span class="px-2">+</span>
+                    <span class="px-5">Web Design</span><span class="px-2">+</span>
+                    <span class="px-5">Front-end Development</span><span class="px-2">+</span>
+                    <span class="px-5">Digital Marketing Assets</span><span class="px-2">+</span>
+                    <span class="px-5">Branding</span><span class="px-2">+</span>
+                    <span class="px-5">Graphic Design</span><span class="px-2">+</span>
+                    <span class="px-5">Web Design</span><span class="px-2">+</span>
+                    <span class="px-5">Front-end Development</span><span class="px-2">+</span>
+                    <span class="px-5">Digital Marketing Assets</span><span class="px-2">+</span>
+                </div>
+                </div>
             </div>
         </div>
     </section>
@@ -322,13 +546,13 @@
                                 </div>
                             </div>
                             
-                            <!-- Canva -->
+                            <!-- Tailwind CSS -->
                             <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
                                 <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-full bg-cyan-900 flex items-center justify-center overflow-hidden">
-                                    <img src="html5.svg" alt="Canva" class="w-5 h-5">
+                                <div class="w-8 h-8 rounded-full bg-[#40513B] flex items-center justify-center overflow-hidden">
+                                    <i data-lucide="wind" class="w-5 h-5 text-[#E67E22]"></i>
                                 </div>
-                                <span class="text-white">html5/css3</span>
+                                <span class="text-white">Tailwind CSS</span>
                                 </div>
                             </div>
                             
@@ -352,13 +576,13 @@
                                 </div>
                             </div>
                             
-                            <!-- Google Workspace -->
+                            <!-- Figma -->
                             <div class="skill-card p-4 rounded-lg bg-gray-900 border border-gray-800 transition-all duration-300">
                                 <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-full bg-green-800 flex items-center justify-center overflow-hidden">
-                                    <img src="google-workspace.svg" alt="Google Workspace" class="w-5 h-5">
+                                <div class="w-8 h-8 rounded-full bg-[#40513B] flex items-center justify-center overflow-hidden">
+                                    <i data-lucide="figma" class="w-5 h-5 text-[#E67E22]"></i>
                                 </div>
-                                <span class="text-white">Google Workspace</span>
+                                <span class="text-white">Figma</span>
                                 </div>
                         </div>
             
@@ -468,29 +692,24 @@
                     </div>
                 </div>
                                 
-                <!-- Project 4 - Student Management System -->
+                <!-- Project 4 - Mayboke -->
                 <div class="project-card rounded-xl p-6 hover:shadow-lg">
-                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
-                        <img src="student.png" alt="EduManage Screenshot" class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h4 class="text-white font-semibold">EduManage</h4>
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48 work-visual">
+                        <div class="absolute inset-0 grid-pattern opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+                            <h4 class="text-3xl font-bold uppercase text-[#E5D9B6]">Mayboke</h4>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Student Management System</h3>
-                    <p class="text-gray-400 mb-4">A comprehensive system for educational institutions to manage students, courses, and grades with admin dashboard.</p>
+                    <h3 class="text-xl font-bold mb-2 text-white">Mayboke Website</h3>
+                    <p class="text-gray-400 mb-4">A polished business website built to present the brand clearly, guide visitors through services, and turn interest into inquiries.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
-                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
-                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
-                        <span class="px-3 py-1 bg-green-900 bg-opacity-50 text-green-300 rounded-full text-xs">PHP</span>
-                        <span class="px-3 py-1 bg-teal-900 bg-opacity-50 text-teal-300 rounded-full text-xs">MySQL</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">Responsive Design</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">Brand Presence</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">SEO Structure</span>
                     </div>
                     <div class="flex space-x-3">
-                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
-                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
-                        </a>
-                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        <a href="https://mayboke.co.ke/" target="_blank" rel="noopener noreferrer" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Site
                         </a>
                     </div>
                 </div>
@@ -521,27 +740,24 @@
                                     </div>
                                 </div>
                                 
-                <!-- Project 6 - To-Do List App -->
+                <!-- Project 6 - Kisaka and Shalle Advocates -->
                 <div class="project-card rounded-xl p-6 hover:shadow-lg">
-                    <div class="relative overflow-hidden rounded-lg mb-6 h-48">
-                        <img src="todo.png" alt="To-Do List App Screenshot" class="absolute inset-0 w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
-                            <h4 class="text-white font-semibold">Task Manager</h4>
+                    <div class="relative overflow-hidden rounded-lg mb-6 h-48 work-visual">
+                        <div class="absolute inset-0 grid-pattern opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center p-6 text-center">
+                            <h4 class="text-2xl font-bold uppercase text-[#E5D9B6]">Kisaka & Shalle</h4>
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">To-Do List Web App</h3>
-                    <p class="text-gray-400 mb-4">A sleek and responsive to-do list app with local storage support, allowing users to track, edit, and complete tasks with ease.</p>
+                    <h3 class="text-xl font-bold mb-2 text-white">Kisaka & Shalle Advocates</h3>
+                    <p class="text-gray-400 mb-4">A professional legal website designed around trust, clarity, practice areas, and direct contact for client inquiries.</p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-blue-900 bg-opacity-50 text-blue-300 rounded-full text-xs">HTML</span>
-                        <span class="px-3 py-1 bg-purple-900 bg-opacity-50 text-purple-300 rounded-full text-xs">CSS</span>
-                        <span class="px-3 py-1 bg-yellow-900 bg-opacity-50 text-yellow-300 rounded-full text-xs">JavaScript</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">Legal Website</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">Corporate Design</span>
+                        <span class="px-3 py-1 bg-[#40513B] text-[#E5D9B6] rounded-full text-xs">Lead Capture</span>
                     </div>
                     <div class="flex space-x-3">
-                        <a href="#" class="text-sm text-neon-blue hover:underline flex items-center">
-                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Demo
-                        </a>
-                        <a href="#" class="text-sm text-gray-400 hover:text-white hover:underline flex items-center">
-                            <i class="fab fa-github w-4 h-4 mr-1"></i> Code
+                        <a href="https://kisakaandshalleadvocates.co.ke/" target="_blank" rel="noopener noreferrer" class="text-sm text-neon-blue hover:underline flex items-center">
+                            <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Live Site
                         </a>
                     </div>
                 </div>
@@ -737,7 +953,7 @@
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    I offer a range of services to help bring your digital vision to life with precision and creativity.
+                    I help brands move from scattered ideas to sharp digital presence: websites, visuals, content systems, and launch support that feel intentional.
                 </p>
             </div>
             
@@ -746,22 +962,22 @@
                     <div class="w-14 h-14 rounded-full bg-red-800 bg-opacity-30 flex items-center justify-center mb-6">
                         <img src="video.svg" alt="Video Editing Logo" class="w-10 h-10 object-contain rounded-full" />
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Video Editing</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Website Design & Build</h3>
                     <p class="text-gray-400 mb-6">
-                        High-quality video editing for social media, content creation, and digital marketing. Professional visuals that engage and convert.
+                        Custom portfolio, business, and landing pages with strong layout, responsive structure, and visuals that feel made for your brand.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        YouTube & Social Clips
+                        Responsive Website Design
                         </li>
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        Smooth Transitions & Effects
+                        Landing Pages & Portfolios
                         </li>
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        Subtitles & Branding
+                        Conversion-Focused Sections
                         </li>
                     </ul>
                     </div>
@@ -774,20 +990,20 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 text-white">Front-End Development</h3>
                     <p class="text-gray-400 mb-6">
-                        Clean, efficient code that brings designs to life with smooth animations, interactions, and optimal performance.
+                        Clean interfaces built with practical code, smooth interactions, and the kind of responsiveness that makes a site feel finished.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            HTML/CSS/JavaScript
+                            React & JavaScript UI
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            React/Vue.js
+                            Tailwind CSS Builds
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Performance Optimization
+                            Motion & Performance Polish
                         </li>
                     </ul>
                 </div>
@@ -797,22 +1013,22 @@
                     <div class="w-14 h-14 rounded-full bg-green-800 bg-opacity-30 flex items-center justify-center mb-6">
                         <img src="digital.svg" alt="Digital Marketing Logo" class="w-11 h-11 object-contain rounded-full" />
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Digital Marketing</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Brand & Campaign Assets</h3>
                     <p class="text-gray-400 mb-6">
-                        Drive traffic, grow engagement, and boost sales with effective online strategies, including content, SEO, and ads.
+                        Scroll-stopping digital assets for launches, promos, social campaigns, and business communication.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        Social Media Campaigns
+                        Social Media Posters
                         </li>
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        Email & SEO Marketing
+                        Product & Service Promos
                         </li>
                         <li class="flex items-center text-gray-300">
                         <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                        Analytics & Insights
+                        Launch Visual Systems
                         </li>
                     </ul>
                     </div>
@@ -823,22 +1039,22 @@
                                        <div class="w-14 h-14 rounded-full bg-red-900 bg-opacity-30 flex items-center justify-center mb-6">
                         <img src="art.svg" alt="Virtual Assistant Logo" class="w-12 h-12 object-contain rounded-full" />
                         </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Graphic Design</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Identity & Graphic Design</h3>
                     <p class="text-gray-400 mb-6">
-                        Visually striking graphics, logos, and branding materials that make your business stand out.
+                        Distinctive visual systems for businesses that need to look credible, memorable, and consistent everywhere.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Logo Design
+                            Logo Direction
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Brand Identity
+                            Brand Boards
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Marketing Materials
+                            Print & Digital Collateral
                         </li>
                     </ul>
                 </div>
@@ -848,22 +1064,22 @@
                     <div class="w-14 h-14 rounded-full bg-green-800 bg-opacity-30 flex items-center justify-center mb-6">
                         <img src="websitemaitenance.svg" alt="Digital Marketing Logo" class="w-8 h-8 object-contain rounded-full" />
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Website Maintenance</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Website Care</h3>
                     <p class="text-gray-400 mb-6">
-                        Ongoing support, updates, and optimizations to keep your website running smoothly and securely.
+                        Ongoing updates and improvements so your site stays current, quick, and aligned with your next move.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Regular Updates
+                            Content Updates
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Security Patches
+                            Fixes & Adjustments
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Performance Tuning
+                            Speed & Usability Checks
                         </li>
                     </ul>
                 </div>
@@ -874,22 +1090,22 @@
                         <img src="customer.svg" alt="Virtual Assistant Logo" class="w-12 h-12 object-contain rounded-full" />
                         </div>
 
-                    <h3 class="text-xl font-bold mb-4 text-white">Virtual Assistant</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Launch Support & Content Ops</h3>
                     <p class="text-gray-400 mb-6">
-                        Administrative and technical support to help streamline your business operations and digital presence.
+                        Practical support for keeping your digital presence organized, published, and moving without the chaos.
                     </p>
                     <ul class="space-y-2">
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Data Entry
+                            Content Uploads
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Content Management
+                            Page & Asset Organization
                         </li>
                         <li class="flex items-center text-gray-300">
                             <i data-lucide="check" class="w-4 h-4 text-neon-blue mr-2"></i>
-                            Customer Support
+                            Basic Tech Support
                         </li>
                     </ul>
                 </div>
@@ -999,7 +1215,7 @@
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                Connect with me on social media to stay updated, ask questions, or just say hello! I'm always open to networking and new opportunities.
+                Have a website, brand, or campaign idea in mind? Reach me directly and let us shape it into something clean, useful, and memorable.
 
                 </p>
             </div>
@@ -1021,6 +1237,12 @@
                     color: #1877F3 !important;
                     fill: #1877F3 !important;
                 }
+                /* WhatsApp */
+                a[aria-label="WhatsApp"]:hover svg,
+                a[aria-label="WhatsApp"]:hover i {
+                    color: #25D366 !important;
+                    fill: #25D366 !important;
+                }
                 /* Instagram (gradient) */
                 a[aria-label="Instagram"]:hover svg path {
                     /* Instagram gradient as a fallback to solid color */
@@ -1039,12 +1261,12 @@
                     </linearGradient>
                 </defs>
             </svg>
-            <ul class="flex justify-center mt-5 space-x-5">
+            <ul class="flex flex-wrap justify-center mt-5 gap-4">
                 <!-- gmail  -->
                 <li>
                 <a
                     href="mailto:kokonyazeus@gmail.com"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="Email"
                 >
                     <svg
@@ -1062,13 +1284,25 @@
                     </svg>
                 </a>
                 </li>
+                <!-- whatsapp -->
+                <li>
+                <a
+                    href="https://wa.me/254705477887"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
+                    aria-label="WhatsApp"
+                >
+                    <i class="fab fa-whatsapp text-4xl"></i>
+                </a>
+                </li>
                 <!--linkedin -->
                 <li>
                 <a
                     href="https://www.linkedin.com/in/peter-kokonya/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="LinkedIn"
                 >
                     <svg
@@ -1088,7 +1322,7 @@
                     href="https://www.facebook.com/pete.ktlzeus/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="Facebook"
                 >
                     <svg
@@ -1112,7 +1346,7 @@
                     href="https://www.instagram.com/zeus_kokonya/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="Instagram"
                 >
                     <svg
@@ -1136,7 +1370,7 @@
                     href="https://x.com/kokonyazeus"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="Twitter"
                 >
                     <svg
@@ -1158,7 +1392,7 @@
                     href="https://github.com/ZeusKoko"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400"
+                    class="contact-social inline-flex h-14 w-14 items-center justify-center"
                     aria-label="GitHub"
                 >
                     <svg
@@ -1214,6 +1448,32 @@
     document.addEventListener('DOMContentLoaded', function() {
       const lightbox = document.getElementById('lightbox');
       const closeBtn = document.getElementById('lightbox-close');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+
+      function setMobileMenu(open) {
+        if (!mobileMenu || !mobileMenuToggle || !mobileMenuIcon) return;
+
+        mobileMenu.classList.toggle('hidden', !open);
+        mobileMenuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mobileMenuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        mobileMenuIcon.setAttribute('data-lucide', open ? 'x' : 'menu');
+        lucide.createIcons();
+      }
+
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+          const isOpen = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+          setMobileMenu(!isOpen);
+        });
+
+        document.querySelectorAll('.mobile-menu-link').forEach(function(link) {
+          link.addEventListener('click', function() {
+            setMobileMenu(false);
+          });
+        });
+      }
       
       if (closeBtn) {
         closeBtn.addEventListener('click', closeLightbox);
@@ -1231,6 +1491,7 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeLightbox();
+          setMobileMenu(false);
         }
       });
     });
