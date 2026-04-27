@@ -1537,6 +1537,16 @@ body {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-burnt-orange {
+  --tw-gradient-from: #E67E22 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(230 126 34 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.to-olive-green {
+  --tw-gradient-to: #628141 var(--tw-gradient-to-position);
+}
+
 .to-purple-600 {
   --tw-gradient-to: #9333ea var(--tw-gradient-to-position);
 }
