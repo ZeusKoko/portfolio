@@ -281,14 +281,101 @@
             to { transform: translateX(-50%); }
         }
         
-        .gallery-item {
-            transition: all 0.3s ease;
+        .folder-card,
+        .folder-gallery-item {
+            background: linear-gradient(145deg, rgba(21, 23, 19, 0.94), rgba(64, 81, 59, 0.68));
+            border: 1px solid rgba(229, 217, 182, 0.14);
+            border-radius: 8px;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .folder-card {
+            position: relative;
+            overflow: hidden;
             cursor: pointer;
         }
-        
-        .gallery-item:hover {
+
+        .folder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            width: 7rem;
+            height: 1.6rem;
+            border-radius: 0 0 12px 12px;
+            background: var(--burnt-orange);
+            opacity: 0.92;
+        }
+
+        .folder-card:hover,
+        .folder-gallery-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(230, 126, 34, 0.62);
+            box-shadow: 0 20px 42px rgba(0, 0, 0, 0.32);
+        }
+
+        .folder-preview {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0.65rem;
+            height: 150px;
+        }
+
+        .folder-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .folder-preview img:first-child {
+            grid-row: span 2;
+        }
+
+        .folder-card:hover .folder-preview img,
+        .folder-gallery-item:hover img {
             transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+        }
+
+        .folder-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.86);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            padding: 1.25rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .folder-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .folder-modal-panel {
+            width: min(100%, 1120px);
+            max-height: 88vh;
+            overflow: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(229, 217, 182, 0.16);
+            background:
+                linear-gradient(145deg, rgba(64, 81, 59, 0.42), rgba(21, 23, 19, 0.96)),
+                var(--ink);
+        }
+
+        .folder-gallery-item {
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .folder-gallery-item img {
+            aspect-ratio: 4 / 3;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
         }
         
         #lightbox {
@@ -782,163 +869,67 @@
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-burnt-orange to-olive-green mx-auto"></div>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    A collection of my creative work, designs, and projects. Click on any image to view it in full size.
+                    Browse my graphic design work by folder. Open a collection, then click any piece to view it full size.
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/BLOSSOM.png')">
-                    <img src="gallery/BLOSSOM.png" alt="Blossom Design" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Blossom Design</h3>
-                        <p class="text-gray-400 text-sm">Creative floral illustration</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <button type="button" class="folder-card p-6 pt-10 text-left" onclick="openDesignFolder('brand')">
+                    <div class="folder-preview rounded-lg overflow-hidden mb-6">
+                        <img src="gallery/Zeupreme deli brand kit.png" alt="Zeupreme Deli Brand Kit">
+                        <img src="gallery/Andes Accessories Brand Board.png" alt="Andes Accessories Brand Board">
+                        <img src="gallery/Business Card Mockup.png" alt="Business Card Mockup">
                     </div>
-                </div>
-                
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/blue CLOUDS poster design.png')">
-                    <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Blue Clouds Poster</h3>
-                        <p class="text-gray-400 text-sm">Modern poster design</p>
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 text-xs text-[#E5D9B6]/70 mb-2">
+                                <i data-lucide="folder-open" class="w-4 h-4 text-[#E67E22]"></i>
+                                <span>04 items</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Brand Systems</h3>
+                            <p class="text-gray-400 text-sm mt-2">Brand kits, logos, and identity mockups.</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-[#E67E22]"></i>
                     </div>
-                </div>
-                
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/customer service poster.png')">
-                    <img src="gallery/customer service poster.png" alt="Customer Service Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Customer Service Poster</h3>
-                        <p class="text-gray-400 text-sm">Professional service design</p>
+                </button>
+
+                <button type="button" class="folder-card p-6 pt-10 text-left" onclick="openDesignFolder('posters')">
+                    <div class="folder-preview rounded-lg overflow-hidden mb-6">
+                        <img src="gallery/blue CLOUDS poster design.png" alt="Blue Clouds Poster">
+                        <img src="gallery/KENYA UNCUT poster design.png" alt="Kenya Uncut Poster">
+                        <img src="gallery/street wear poster design.png" alt="Street Wear Poster">
                     </div>
-                </div>
-                
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/KENYA UNCUT poster design.png')">
-                    <img src="gallery/KENYA UNCUT poster design.png" alt="Kenya Uncut Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Kenya Uncut Poster</h3>
-                        <p class="text-gray-400 text-sm">Cultural design piece</p>
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 text-xs text-[#E5D9B6]/70 mb-2">
+                                <i data-lucide="folder-open" class="w-4 h-4 text-[#E67E22]"></i>
+                                <span>08 items</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Poster Work</h3>
+                            <p class="text-gray-400 text-sm mt-2">Campaign, event, fashion, and culture pieces.</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-[#E67E22]"></i>
                     </div>
-                </div>
-                
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Misikhu AGM Poster Design.png')">
-                    <img src="gallery/Misikhu AGM Poster Design.png" alt="Misikhu AGM Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Misikhu AGM Poster</h3>
-                        <p class="text-gray-400 text-sm">Event poster design</p>
+                </button>
+
+                <button type="button" class="folder-card p-6 pt-10 text-left" onclick="openDesignFolder('products')">
+                    <div class="folder-preview rounded-lg overflow-hidden mb-6">
+                        <img src="gallery/product design crocs.png" alt="Product Design Crocs">
+                        <img src="gallery/brown boba coffee pd.png" alt="Brown Boba Coffee Design">
+                        <img src="gallery/Zeupreme deli product design.png" alt="Zeupreme Deli Product Design">
                     </div>
-                </div>
-                
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/movement poster.jpg')">
-                    <img src="gallery/movement poster.jpg" alt="Movement Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Movement Poster</h3>
-                        <p class="text-gray-400 text-sm">Dynamic design piece</p>
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 text-xs text-[#E5D9B6]/70 mb-2">
+                                <i data-lucide="folder-open" class="w-4 h-4 text-[#E67E22]"></i>
+                                <span>05 items</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Product Design</h3>
+                            <p class="text-gray-400 text-sm mt-2">Product visuals, menus, and commercial design.</p>
+                        </div>
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-[#E67E22]"></i>
                     </div>
-                </div>
-                
-                <!-- Gallery Item 7 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/product design crocs.png')">
-                    <img src="gallery/product design crocs.png" alt="Product Design Crocs" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Product Design - Crocs</h3>
-                        <p class="text-gray-400 text-sm">Product design work</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 8 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/street wear poster design.png')">
-                    <img src="gallery/street wear poster design.png" alt="Street Wear Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Street Wear Poster</h3>
-                        <p class="text-gray-400 text-sm">Fashion design poster</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 9 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/UC Tilers  POSTER DESIGN.png')">
-                    <img src="gallery/UC Tilers  POSTER DESIGN.png" alt="UC Tilers Poster" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">UC Tilers Poster</h3>
-                        <p class="text-gray-400 text-sm">Business poster design</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 10 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli brand kit.png')">
-                    <img src="gallery/Zeupreme deli brand kit.png" alt="Zeupreme Deli Brand Kit" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Zeupreme Deli Brand Kit</h3>
-                        <p class="text-gray-400 text-sm">Complete brand identity</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 11 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/zeupreme deli menu.png')">
-                    <img src="gallery/zeupreme deli menu.png" alt="Zeupreme Deli Menu" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Zeupreme Deli Menu</h3>
-                        <p class="text-gray-400 text-sm">Restaurant menu design</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 12 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli product design.png')">
-                    <img src="gallery/Zeupreme deli product design.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Zeupreme Deli Product Design</h3>
-                        <p class="text-gray-400 text-sm">Product design work</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 13 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Andes Accessories Brand Board.png')">
-                    <img src="gallery/Andes Accessories Brand Board.png" alt="Andes Accessories Brand Board" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Andes Accessories Brand Board</h3>
-                        <p class="text-gray-400 text-sm">Complete brand identity</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 14 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/brown boba coffee pd.png')">
-                    <img src="gallery/brown boba coffee pd.png" alt="Brown Boba Coffee Product Design" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Brown Boba Coffee Design</h3>
-                        <p class="text-gray-400 text-sm">Coffee product design</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 15 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Business Card Mockup.png')">
-                    <img src="gallery/Business Card Mockup.png" alt="Business Card Mockup" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Business Card Mockup</h3>
-                        <p class="text-gray-400 text-sm">Professional card design</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 16 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Main Logo.png')">
-                    <img src="gallery/Main Logo.png" alt="Main Logo Design" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Main Logo Design</h3>
-                        <p class="text-gray-400 text-sm">Primary logo design</p>
-                    </div>
-                </div>
-                
-                <!-- Gallery Item 17 -->
-                <div class="gallery-item rounded-lg overflow-hidden bg-gray-900 border border-gray-800" onclick="openLightbox('gallery/Zeupreme deli pd.png')">
-                    <img src="gallery/Zeupreme deli pd.png" alt="Zeupreme Deli Product Design" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-white font-semibold">Zeupreme Deli PD</h3>
-                        <p class="text-gray-400 text-sm">Additional product design</p>
-                    </div>
-                </div>
+                </button>
             </div>
         </div>
     </section>
@@ -1414,6 +1405,22 @@
         </section>
   
   
+  <!-- Folder Modal -->
+  <div id="folder-modal" class="folder-modal" aria-hidden="true" role="dialog" aria-labelledby="folder-title">
+    <div class="folder-modal-panel">
+      <div class="sticky top-0 z-10 flex items-center justify-between gap-4 p-6 border-b border-[#E5D9B6]/10 bg-[#151713]/95 backdrop-blur">
+        <div>
+          <p id="folder-count" class="text-xs text-[#E67E22] mb-1"></p>
+          <h2 id="folder-title" class="text-2xl md:text-3xl font-bold text-white">Design Folder</h2>
+        </div>
+        <button type="button" id="folder-close" class="h-11 w-11 rounded-full border border-[#E5D9B6]/20 bg-[#E5D9B6]/10 flex items-center justify-center" aria-label="Close folder">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="folder-grid" class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </div>
+
   <!-- Lightbox Modal -->
   <div id="lightbox">
     <span id="lightbox-close">&times;</span>
@@ -1421,6 +1428,77 @@
   </div>
 
   <script>
+    const designFolders = {
+      brand: {
+        title: 'Brand Systems',
+        items: [
+          ['Zeupreme Deli Brand Kit', 'Complete brand identity', 'gallery/Zeupreme deli brand kit.png'],
+          ['Andes Accessories Board', 'Complete brand identity', 'gallery/Andes Accessories Brand Board.png'],
+          ['Business Card Mockup', 'Professional card design', 'gallery/Business Card Mockup.png'],
+          ['Main Logo Design', 'Primary logo design', 'gallery/Main Logo.png']
+        ]
+      },
+      posters: {
+        title: 'Poster Work',
+        items: [
+          ['Blossom Design', 'Creative floral illustration', 'gallery/BLOSSOM.png'],
+          ['Blue Clouds Poster', 'Modern poster design', 'gallery/blue CLOUDS poster design.png'],
+          ['Customer Service Poster', 'Professional service design', 'gallery/customer service poster.png'],
+          ['Kenya Uncut Poster', 'Cultural design piece', 'gallery/KENYA UNCUT poster design.png'],
+          ['Misikhu AGM Poster', 'Event poster design', 'gallery/Misikhu AGM Poster Design.png'],
+          ['Movement Poster', 'Dynamic design piece', 'gallery/movement poster.jpg'],
+          ['Street Wear Poster', 'Fashion design poster', 'gallery/street wear poster design.png'],
+          ['UC Tilers Poster', 'Business poster design', 'gallery/UC Tilers  POSTER DESIGN.png']
+        ]
+      },
+      products: {
+        title: 'Product Design',
+        items: [
+          ['Product Design - Crocs', 'Product design work', 'gallery/product design crocs.png'],
+          ['Brown Boba Coffee', 'Coffee product design', 'gallery/brown boba coffee pd.png'],
+          ['Zeupreme Deli Menu', 'Restaurant menu design', 'gallery/zeupreme deli menu.png'],
+          ['Zeupreme Deli Product Design', 'Product design work', 'gallery/Zeupreme deli product design.png'],
+          ['Zeupreme Deli PD', 'Additional product design', 'gallery/Zeupreme deli pd.png']
+        ]
+      }
+    };
+
+    function openDesignFolder(folderKey) {
+      const folder = designFolders[folderKey];
+      const modal = document.getElementById('folder-modal');
+      const grid = document.getElementById('folder-grid');
+      const title = document.getElementById('folder-title');
+      const count = document.getElementById('folder-count');
+
+      if (!folder || !modal || !grid || !title || !count) return;
+
+      title.textContent = folder.title;
+      count.textContent = `${folder.items.length.toString().padStart(2, '0')} pieces`;
+      grid.innerHTML = folder.items.map(([itemTitle, description, src]) => `
+        <button type="button" class="folder-gallery-item text-left" onclick="openLightbox('${src}')">
+          <img src="${src}" alt="${itemTitle}">
+          <div class="p-4">
+            <h3 class="text-white font-semibold">${itemTitle}</h3>
+            <p class="text-gray-400 text-sm mt-1">${description}</p>
+          </div>
+        </button>
+      `).join('');
+
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeDesignFolder() {
+      const modal = document.getElementById('folder-modal');
+      if (modal) {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
     // Lightbox functionality
     function openLightbox(imageSrc) {
       console.log('Opening lightbox with:', imageSrc);
@@ -1448,6 +1526,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       const lightbox = document.getElementById('lightbox');
       const closeBtn = document.getElementById('lightbox-close');
+      const folderModal = document.getElementById('folder-modal');
+      const folderClose = document.getElementById('folder-close');
       const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
       const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
@@ -1478,6 +1558,10 @@
       if (closeBtn) {
         closeBtn.addEventListener('click', closeLightbox);
       }
+
+      if (folderClose) {
+        folderClose.addEventListener('click', closeDesignFolder);
+      }
       
       if (lightbox) {
         lightbox.addEventListener('click', function(e) {
@@ -1486,11 +1570,20 @@
           }
         });
       }
+
+      if (folderModal) {
+        folderModal.addEventListener('click', function(e) {
+          if (e.target === folderModal) {
+            closeDesignFolder();
+          }
+        });
+      }
       
       // Close on Escape key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
           closeLightbox();
+          closeDesignFolder();
           setMobileMenu(false);
         }
       });
